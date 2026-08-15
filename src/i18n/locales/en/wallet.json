@@ -1,0 +1,32 @@
+{
+  "dashboard": {
+    "title": "Wallet overview",
+    "description": "Your balance and recent activity in one place.",
+    "greeting": "Welcome back, {{name}}",
+    "context": "Here is your wallet at a glance."
+  },
+  "balance": {
+    "label": "Available balance",
+    "personalWallet": "Personal wallet",
+    "available": "Available",
+    "accountEnding": "Wallet ending"
+  },
+  "activity": {
+    "title": "Recent activity",
+    "description": "Your latest wallet movements",
+    "count_one": "{{count}} transaction",
+    "count_other": "{{count}} transactions",
+    "empty": "No transactions have been recorded yet."
+  },
+  "quickActions": {
+    "title": "Quick actions",
+    "transfer": "Send money",
+    "topUp": "Top up",
+    "assistant": "Ask Thiqa"
+  },
+  "errors": {
+    "invalidData": "Wallet data could not be verified.",
+    "unavailable": "The wallet service is unavailable.",
+    "generic": "Your wallet could not be loaded."
+  }
+}

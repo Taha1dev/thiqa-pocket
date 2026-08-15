@@ -1,0 +1,99 @@
+{
+  "user": {
+    "id": "usr_1001",
+    "name": "Sara Al-Otaibi",
+    "phone": "+966501234567",
+    "walletBalance": 4285.5,
+    "currency": "SAR"
+  },
+  "transactions": [
+    {
+      "id": "txn_1001",
+      "type": "debit",
+      "category": "transfer",
+      "amount": 250,
+      "counterpartyName": "Ahmed Al-Harbi",
+      "counterpartyAccount": "SA0380000000608010167519",
+      "status": "completed",
+      "timestamp": "2026-08-12T14:32:00+03:00",
+      "note": "Rent share"
+    },
+    {
+      "id": "txn_1002",
+      "type": "credit",
+      "category": "top_up",
+      "amount": 1000,
+      "counterpartyName": "Bank Transfer",
+      "counterpartyAccount": null,
+      "status": "completed",
+      "timestamp": "2026-08-11T09:15:00+03:00",
+      "note": "Monthly top-up"
+    },
+    {
+      "id": "txn_1003",
+      "type": "debit",
+      "category": "bill_payment",
+      "amount": 189.75,
+      "counterpartyName": "STC",
+      "counterpartyAccount": null,
+      "status": "completed",
+      "timestamp": "2026-08-10T18:47:00+03:00",
+      "note": "Mobile bill"
+    },
+    {
+      "id": "txn_1004",
+      "type": "debit",
+      "category": "purchase",
+      "amount": 76.2,
+      "counterpartyName": "Panda Hypermarket",
+      "counterpartyAccount": null,
+      "status": "pending",
+      "timestamp": "2026-08-10T12:05:00+03:00",
+      "note": null
+    },
+    {
+      "id": "txn_1005",
+      "type": "debit",
+      "category": "transfer",
+      "amount": 500,
+      "counterpartyName": "Fatima Al-Zahrani",
+      "counterpartyAccount": "SA4420000001234567891234",
+      "status": "failed",
+      "timestamp": "2026-08-09T20:11:00+03:00",
+      "note": "Insufficient balance at time of send"
+    },
+    {
+      "id": "txn_1006",
+      "type": "credit",
+      "category": "refund",
+      "amount": 45,
+      "counterpartyName": "Jarir Bookstore",
+      "counterpartyAccount": null,
+      "status": "completed",
+      "timestamp": "2026-08-08T16:22:00+03:00",
+      "note": "Returned item"
+    },
+    {
+      "id": "txn_1007",
+      "type": "debit",
+      "category": "bill_payment",
+      "amount": 320,
+      "counterpartyName": "SEC (Saudi Electricity)",
+      "counterpartyAccount": null,
+      "status": "completed",
+      "timestamp": "2026-08-05T08:00:00+03:00",
+      "note": "Electricity bill"
+    },
+    {
+      "id": "txn_1008",
+      "type": "credit",
+      "category": "top_up",
+      "amount": 2000,
+      "counterpartyName": "Bank Transfer",
+      "counterpartyAccount": null,
+      "status": "completed",
+      "timestamp": "2026-08-01T10:30:00+03:00",
+      "note": "Initial funding"
+    }
+  ]
+}

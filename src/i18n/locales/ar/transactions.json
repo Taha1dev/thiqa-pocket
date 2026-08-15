@@ -1,0 +1,29 @@
+{
+  "detail": {
+    "title": "تفاصيل المعاملة",
+    "amount": "المبلغ",
+    "counterparty": "الطرف الآخر",
+    "status": "الحالة",
+    "date": "التاريخ",
+    "reference": "المرجع",
+    "notFoundTitle": "المعاملة غير موجودة",
+    "notFoundDescription": "هذه المعاملة غير موجودة أو لم تعد متاحة."
+  },
+  "status": {
+    "completed": "مكتملة",
+    "pending": "قيد المعالجة",
+    "failed": "فشلت"
+  },
+  "category": {
+    "transfer": "تحويل",
+    "top_up": "شحن رصيد",
+    "bill_payment": "دفع فاتورة",
+    "purchase": "شراء",
+    "refund": "استرداد"
+  },
+  "errors": {
+    "invalidData": "تعذر التحقق من بيانات المعاملة.",
+    "unavailable": "خدمة المعاملات غير متاحة.",
+    "generic": "تعذر تحميل هذه المعاملة."
+  }
+}

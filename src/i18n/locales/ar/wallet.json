@@ -1,0 +1,35 @@
+{
+  "dashboard": {
+    "title": "نظرة عامة على المحفظة",
+    "description": "رصيدك ونشاطك الأخير في مكان واحد.",
+    "greeting": "مرحبًا بعودتك، {{name}}",
+    "context": "إليك محفظتك في لمحة."
+  },
+  "balance": {
+    "label": "الرصيد المتاح",
+    "personalWallet": "المحفظة الشخصية",
+    "available": "متاح",
+    "accountEnding": "المحفظة المنتهية بـ"
+  },
+  "activity": {
+    "title": "النشاط الأخير",
+    "description": "أحدث حركات محفظتك",
+    "count_one": "معاملة واحدة",
+    "count_two": "معاملتان",
+    "count_few": "{{count}} معاملات",
+    "count_many": "{{count}} معاملة",
+    "count_other": "{{count}} معاملة",
+    "empty": "لم تُسجَّل أي معاملات بعد."
+  },
+  "quickActions": {
+    "title": "إجراءات سريعة",
+    "transfer": "إرسال المال",
+    "topUp": "شحن الرصيد",
+    "assistant": "اسأل ثقة"
+  },
+  "errors": {
+    "invalidData": "تعذر التحقق من بيانات المحفظة.",
+    "unavailable": "خدمة المحفظة غير متاحة.",
+    "generic": "تعذر تحميل محفظتك."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "detail": {
+    "title": "Transaction details",
+    "amount": "Amount",
+    "counterparty": "Counterparty",
+    "status": "Status",
+    "date": "Date",
+    "reference": "Reference",
+    "notFoundTitle": "Transaction not found",
+    "notFoundDescription": "This transaction does not exist or is no longer available."
+  },
+  "status": {
+    "completed": "Completed",
+    "pending": "Pending",
+    "failed": "Failed"
+  },
+  "category": {
+    "transfer": "Transfer",
+    "top_up": "Top up",
+    "bill_payment": "Bill payment",
+    "purchase": "Purchase",
+    "refund": "Refund"
+  },
+  "errors": {
+    "invalidData": "Transaction data could not be verified.",
+    "unavailable": "The transaction service is unavailable.",
+    "generic": "This transaction could not be loaded."
+  }
+}

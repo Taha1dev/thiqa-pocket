@@ -1,0 +1,21 @@
+{
+  "transfer": {
+    "title": "Send money",
+    "description": "The transfer flow will be added in the next product phase."
+  },
+  "topUp": {
+    "title": "Top up wallet",
+    "description": "The top-up flow will be added in the next product phase."
+  },
+  "fields": {
+    "amount": "Amount",
+    "iban": "Saudi IBAN",
+    "recipient": "Recipient",
+    "note": "Note"
+  },
+  "validation": {
+    "amountRequired": "Enter an amount.",
+    "amountInvalid": "Enter a valid amount.",
+    "ibanInvalid": "Enter a Saudi IBAN beginning with SA followed by 22 digits."
+  }
+}

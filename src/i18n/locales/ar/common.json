@@ -1,0 +1,53 @@
+{
+  "productName": "محفظة ثقة",
+  "navigation": {
+    "dashboard": "الرئيسية",
+    "transfer": "إرسال",
+    "topUp": "شحن الرصيد",
+    "assistant": "اسأل ثقة"
+  },
+  "mobileNavigation": {
+    "dashboard": "الرئيسية",
+    "transfer": "إرسال",
+    "topUp": "شحن",
+    "assistant": "اسأل ثقة"
+  },
+  "actions": {
+    "retry": "حاول مرة أخرى",
+    "logout": "تسجيل الخروج",
+    "switchToArabic": "العربية",
+    "switchToEnglish": "English",
+    "backToDashboard": "العودة إلى الرئيسية"
+  },
+  "states": {
+    "loading": "جارٍ التحميل…",
+    "empty": "لا يوجد ما يمكن عرضه بعد.",
+    "error": "حدث خطأ. حاول مرة أخرى."
+  },
+  "account": {
+    "defaultName": "حساب المحفظة"
+  },
+  "notifications": {
+    "loggedOut": {
+      "title": "تم تسجيل الخروج",
+      "description": "انتهت جلسة المحفظة التجريبية."
+    }
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "description": "الصفحة المطلوبة غير موجودة أو تم نقلها."
+  },
+  "routeError": {
+    "title": "تعذر تحميل هذه الصفحة",
+    "description": "عُد إلى الصفحة الرئيسية وحاول مرة أخرى."
+  },
+  "accessibility": {
+    "mainNavigation": "التنقل الرئيسي",
+    "mobileNavigation": "التنقل عبر الهاتف",
+    "skipToContent": "تخطَّ إلى المحتوى الرئيسي",
+    "languageSwitcher": "تغيير اللغة",
+    "themeToggle": "التبديل بين الوضع الفاتح والداكن",
+    "accountMenu": "فتح قائمة الحساب",
+    "brandHome": "الصفحة الرئيسية لمحفظة ثقة"
+  }
+}

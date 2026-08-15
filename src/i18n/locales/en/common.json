@@ -1,0 +1,53 @@
+{
+  "productName": "Thiqa Pocket",
+  "navigation": {
+    "dashboard": "Dashboard",
+    "transfer": "Send",
+    "topUp": "Top up",
+    "assistant": "Ask Thiqa"
+  },
+  "mobileNavigation": {
+    "dashboard": "Home",
+    "transfer": "Send",
+    "topUp": "Top up",
+    "assistant": "Ask Thiqa"
+  },
+  "actions": {
+    "retry": "Try again",
+    "logout": "Log out",
+    "switchToArabic": "العربية",
+    "switchToEnglish": "English",
+    "backToDashboard": "Back to dashboard"
+  },
+  "states": {
+    "loading": "Loading…",
+    "empty": "Nothing to show yet.",
+    "error": "Something went wrong. Try again."
+  },
+  "account": {
+    "defaultName": "Wallet account"
+  },
+  "notifications": {
+    "loggedOut": {
+      "title": "Signed out",
+      "description": "Your mock wallet session has ended."
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you requested does not exist or has moved."
+  },
+  "routeError": {
+    "title": "This page could not be loaded",
+    "description": "Return to the dashboard and try again."
+  },
+  "accessibility": {
+    "mainNavigation": "Main navigation",
+    "mobileNavigation": "Mobile navigation",
+    "skipToContent": "Skip to main content",
+    "languageSwitcher": "Change language",
+    "themeToggle": "Toggle light or dark theme",
+    "accountMenu": "Open account menu",
+    "brandHome": "Thiqa Pocket dashboard"
+  }
+}
