@@ -1,7 +1,44 @@
 {
   "page": {
-    "title": "Spending assistant",
-    "description": "Personal spending insights will appear here in the next product phase."
+    "title": "Ask Thiqa AI",
+    "description": "Ask questions about your wallet balance and recent activity."
   },
-  "empty": "No insights are available yet."
+  "intro": {
+    "badge": "Read-only insights",
+    "title": "Your wallet, explained.",
+    "description": "Thiqa AI uses the wallet activity shown in this demo to give you a clear, concise answer. Try one of these questions."
+  },
+  "suggestions": {
+    "transferMonth": "How much did I spend on transfers this month?",
+    "largestExpense": "What was my largest completed expense?",
+    "topUpMonth": "How much did I top up this month?",
+    "spendingSummary": "Summarize my recent spending."
+  },
+  "conversation": {
+    "label": "Conversation",
+    "userMessage": "Your message",
+    "assistantMessage": "Thiqa AI response"
+  },
+  "composer": {
+    "label": "Ask about your wallet",
+    "placeholder": "Ask about your wallet...",
+    "send": "Send",
+    "hint": "Do not include account numbers or other sensitive information."
+  },
+  "thinking": {
+    "label": "Reviewing your wallet...",
+    "announcement": "Thiqa AI is thinking."
+  },
+  "error": {
+    "title": "I couldn't answer that right now.",
+    "description": "Your question is still here. Try sending it again.",
+    "retry": "Try again"
+  },
+  "data": {
+    "loading": "Loading your wallet context...",
+    "invalid": "Your wallet data could not be read safely.",
+    "unavailable": "Your wallet activity is temporarily unavailable.",
+    "generic": "The assistant could not load your wallet context.",
+    "retry": "Try loading again"
+  }
 }

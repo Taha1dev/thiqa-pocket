@@ -56,7 +56,7 @@ describe("protected routes", () => {
     await user.click(screen.getByRole("button", { name: "Sign in securely" }))
 
     expect(
-      await screen.findByRole("heading", { name: "Spending assistant" })
+      await screen.findByRole("heading", { name: "Ask Thiqa AI" })
     ).toBeInTheDocument()
     expect(router.state.location.pathname).toBe("/assistant")
   })

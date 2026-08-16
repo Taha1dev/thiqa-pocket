@@ -45,6 +45,18 @@ The demo transfer range is SAR 10.00–10,000.00 and cannot exceed the available
 
 Production hosts must rewrite unknown browser-history paths to `index.html` so direct links such as `/transactions/txn_1001` resolve to the SPA.
 
+## Ask AI
+
+Ask AI is a read-only, session-only demo for questions about the supplied wallet activity. The React feature loads wallet and transaction context through the existing TanStack Query repository, then calls an `AssistantProvider`; its HTTP implementation minimizes that context to the balance and analysis-relevant transaction fields before posting to `/api/assistant`. Phone numbers, account/IBAN values, notes, and full wallet records are not sent.
+
+Gemini runs only inside the Vercel serverless function and is constrained to answer from the supplied wallet data. `GEMINI_API_KEY` is read server-side and never enters the Vite client bundle. Chat messages stay in component memory and are discarded on refresh. This bonus feature is a product demonstration, not financial advice, and it cannot execute transfers or top-ups.
+
+For local end-to-end development, add `GEMINI_API_KEY` to the uncommitted `.env.local` file and run:
+
+```bash
+npx vercel dev
+```
+
 ## Transaction presentation and wallet card
 
 Transaction identity always remains in `/transactions/:transactionId`. A normal Dashboard click records an in-memory presentation origin, updates the URL, and presents the shared transaction detail content in the generated shadcn Base UI Drawer. The Drawer is bottom-oriented on mobile and direction-aware on desktop. Closing or using browser Back returns to the Dashboard; because the presentation origin is intentionally memory-only, a refresh, pasted URL, or other direct navigation renders the same content as a standalone page instead of placing a Drawer over an invented background.
