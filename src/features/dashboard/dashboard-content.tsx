@@ -1,4 +1,4 @@
-import { Fragment, type ComponentType } from "react"
+import { Fragment, useEffect, type ComponentType } from "react"
 import {
   ArrowCounterClockwise,
   CaretRight,
@@ -12,7 +12,7 @@ import {
   XCircle,
   type IconProps,
 } from "@phosphor-icons/react"
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router"
 import { useTranslation } from "react-i18next"
 
 import { getTransactionPath, routePaths } from "@/app/router/paths"
@@ -25,9 +25,14 @@ import type {
   TransactionStatus,
 } from "@/domain/transaction/transaction"
 import type { WalletUser } from "@/domain/wallet/wallet"
+import {
+  isPlainPrimaryNavigation,
+  useTransactionPresentation,
+} from "@/features/transactions/transaction-presentation"
 import { cn } from "@/lib/utils"
 import { formatDate } from "@/shared/formatting/format-date"
 import { formatMoney } from "@/shared/formatting/format-money"
+import { CreditCard } from "@/shared/ui/credit-card"
 
 interface DashboardContentProps {
   readonly wallet: WalletUser
@@ -80,65 +85,6 @@ const statusClassNames: Record<TransactionStatus, string> = {
   failed: "bg-status-failed text-status-failed-foreground",
 }
 
-function WalletBalanceCard({
-  wallet,
-  locale,
-}: Pick<DashboardContentProps, "wallet" | "locale">) {
-  const { t } = useTranslation("wallet")
-  const accountEnding =
-    wallet.id.split("_").at(-1)?.slice(-4) ?? wallet.id.slice(-4)
-
-  return (
-    <section
-      aria-labelledby="wallet-balance-title"
-      className="relative flex min-h-64 flex-col justify-between overflow-hidden rounded-3xl wallet-card-pattern p-6 text-wallet-foreground elevated-surface sm:min-h-72 sm:p-8"
-    >
-      <div
-        aria-hidden="true"
-        className="absolute inset-s-6 top-0 h-0.5 w-14 rounded-b-full bg-brand-gold sm:inset-s-8"
-      />
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p
-            id="wallet-balance-title"
-            className="text-sm font-medium text-wallet-muted"
-          >
-            {t("balance.label")}
-          </p>
-          <p className="mt-1 text-xs text-wallet-muted/80">
-            {t("balance.personalWallet")}
-          </p>
-        </div>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-wallet-muted/20 bg-white/5 px-2.5 py-1 text-xs text-wallet-muted">
-          <span
-            aria-hidden="true"
-            className="size-1.5 rounded-full bg-brand-jade"
-          />
-          {t("balance.available")}
-        </span>
-      </div>
-
-      <div className="relative">
-        <bdi
-          className="block financial-value text-3xl font-semibold tracking-[-0.035em] sm:text-5xl"
-          dir="ltr"
-        >
-          {formatMoney(wallet.balance, locale)}
-        </bdi>
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs text-wallet-muted">
-          <span>{wallet.name}</span>
-          <span>
-            {t("balance.accountEnding")}{" "}
-            <bdi className="financial-value" dir="ltr">
-              •••• {accountEnding}
-            </bdi>
-          </span>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function QuickActions() {
   const { t } = useTranslation("wallet")
 
@@ -164,10 +110,7 @@ function QuickActions() {
                 to={action.path}
               >
                 <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-accent text-accent-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <Icon
-                    aria-hidden="true"
-                    className="size-[1.05rem]"
-                  />
+                  <Icon aria-hidden="true" className="size-[1.05rem]" />
                 </span>
                 <span>{t(action.translationKey)}</span>
               </Link>
@@ -187,20 +130,25 @@ function TransactionRow({
   readonly locale: string
 }) {
   const { t } = useTranslation("transactions")
+  const { beginContextualPresentation } = useTransactionPresentation()
   const CategoryIcon = categoryIcons[transaction.category]
   const StatusIcon = statusIcons[transaction.status]
   const amountSign = transaction.type === "credit" ? "+" : "−"
+  const focusTargetId = `transaction-link-${transaction.id}`
 
   return (
     <Link
       className="group grid pressable grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl px-2 py-3 hover:bg-muted/70 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring sm:gap-4 sm:px-3 sm:py-3.5"
+      id={focusTargetId}
       to={getTransactionPath(transaction.id)}
+      onClick={(event) => {
+        if (isPlainPrimaryNavigation(event)) {
+          beginContextualPresentation(transaction.id, focusTargetId)
+        }
+      }}
     >
       <span className="grid size-10 place-items-center rounded-xl bg-accent text-accent-foreground sm:size-11">
-        <CategoryIcon
-          aria-hidden="true"
-          className="size-[1.15rem]"
-        />
+        <CategoryIcon aria-hidden="true" className="size-[1.15rem]" />
       </span>
 
       <span className="min-w-0">
@@ -240,7 +188,6 @@ function TransactionRow({
             variant="secondary"
           >
             <StatusIcon
-
               aria-hidden="true"
               data-icon="inline-start"
               weight="fill"
@@ -314,10 +261,25 @@ export function DashboardContent({
   transactions,
   locale,
 }: DashboardContentProps) {
+  const location = useLocation()
+  const { presentation } = useTransactionPresentation()
+
+  useEffect(() => {
+    if (location.pathname !== routePaths.dashboard || !presentation) {
+      return
+    }
+
+    const animationFrameId = window.requestAnimationFrame(() => {
+      document.getElementById(presentation.focusTargetId)?.focus()
+    })
+
+    return () => window.cancelAnimationFrame(animationFrameId)
+  }, [location.pathname, presentation])
+
   return (
     <>
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1.55fr)_minmax(17rem,0.45fr)] lg:gap-5">
-        <WalletBalanceCard locale={locale} wallet={wallet} />
+        <CreditCard locale={locale} wallet={wallet} />
         <QuickActions />
       </div>
       <TransactionActivity locale={locale} transactions={transactions} />
@@ -329,7 +291,7 @@ export function DashboardSkeleton() {
   return (
     <div aria-hidden="true" className="flex flex-col gap-5">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1.55fr)_minmax(17rem,0.45fr)] lg:gap-5">
-        <Skeleton className="min-h-64 rounded-3xl sm:min-h-72" />
+        <Skeleton className="min-h-[20rem] rounded-[2rem] sm:min-h-[22rem]" />
         <div className="rounded-3xl bg-secondary/55 p-5">
           <Skeleton className="mb-4 h-4 w-24" />
           <div className="grid grid-cols-3 gap-2 lg:grid-cols-1">

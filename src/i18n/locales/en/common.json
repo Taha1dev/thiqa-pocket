@@ -17,7 +17,8 @@
     "logout": "Log out",
     "switchToArabic": "العربية",
     "switchToEnglish": "English",
-    "backToDashboard": "Back to dashboard"
+    "backToDashboard": "Back to dashboard",
+    "viewReceipt": "View receipt"
   },
   "states": {
     "loading": "Loading…",
@@ -26,6 +27,10 @@
   },
   "account": {
     "defaultName": "Wallet account"
+  },
+  "languages": {
+    "arabic": "العربية",
+    "english": "English"
   },
   "notifications": {
     "loggedOut": {
@@ -46,6 +51,7 @@
     "mobileNavigation": "Mobile navigation",
     "skipToContent": "Skip to main content",
     "languageSwitcher": "Change language",
+    "languageMenu": "Choose a language",
     "themeToggle": "Toggle light or dark theme",
     "accountMenu": "Open account menu",
     "brandHome": "Thiqa Pocket dashboard"

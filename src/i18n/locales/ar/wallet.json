@@ -9,7 +9,10 @@
     "label": "الرصيد المتاح",
     "personalWallet": "المحفظة الشخصية",
     "available": "متاح",
-    "accountEnding": "المحفظة المنتهية بـ"
+    "virtual": "افتراضية",
+    "accountEnding": "المحفظة المنتهية بـ",
+    "holder": "صاحب المحفظة",
+    "reference": "مرجع المحفظة"
   },
   "activity": {
     "title": "النشاط الأخير",

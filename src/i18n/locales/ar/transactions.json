@@ -1,13 +1,32 @@
 {
   "detail": {
     "title": "تفاصيل المعاملة",
+    "description": "راجع حركة المحفظة المحددة.",
     "amount": "المبلغ",
     "counterparty": "الطرف الآخر",
     "status": "الحالة",
     "date": "التاريخ",
     "reference": "المرجع",
+    "detailsHeading": "معلومات المعاملة",
+    "category": "الفئة",
+    "type": "نوع الحركة",
+    "account": "الآيبان / الحساب",
+    "transactionId": "معرّف المعاملة",
+    "note": "ملاحظة",
+    "failureContext": "سبب فشل هذه المعاملة",
+    "copyAccount": "نسخ الآيبان أو الحساب",
+    "copyTransactionId": "نسخ معرّف المعاملة",
+    "backToActivity": "العودة إلى النشاط",
+    "drawerTitle": "تفاصيل المعاملة",
+    "drawerDescription": "راجع حركة المحفظة هذه.",
+    "close": "إغلاق تفاصيل المعاملة",
+    "errorTitle": "المعاملة غير متاحة",
     "notFoundTitle": "المعاملة غير موجودة",
     "notFoundDescription": "هذه المعاملة غير موجودة أو لم تعد متاحة."
+  },
+  "type": {
+    "credit": "أموال واردة",
+    "debit": "أموال صادرة"
   },
   "status": {
     "completed": "مكتملة",
@@ -25,5 +44,19 @@
     "invalidData": "تعذر التحقق من بيانات المعاملة.",
     "unavailable": "خدمة المعاملات غير متاحة.",
     "generic": "تعذر تحميل هذه المعاملة."
+  },
+  "notifications": {
+    "transactionIdCopied": {
+      "title": "تم نسخ معرّف المعاملة",
+      "description": "المرجع جاهز للصق."
+    },
+    "accountCopied": {
+      "title": "تم نسخ الآيبان",
+      "description": "قيمة الحساب جاهزة للصق."
+    },
+    "copyFailed": {
+      "title": "تعذر النسخ",
+      "description": "انسخ القيمة يدويًا وحاول مرة أخرى عند الحاجة."
+    }
   }
 }

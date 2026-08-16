@@ -1,21 +1,174 @@
 {
+  "currency": {
+    "sar": "SAR"
+  },
+  "steps": {
+    "details": "Details",
+    "amount": "Amount",
+    "review": "Review"
+  },
   "transfer": {
     "title": "Send money",
-    "description": "The transfer flow will be added in the next product phase."
+    "description": "Enter the transfer details, then review everything before confirming.",
+    "details": {
+      "title": "Transfer details",
+      "description": "Send a simulated transfer from your available wallet balance.",
+      "reviewAction": "Review transfer"
+    },
+    "fields": {
+      "recipient": {
+        "label": "Recipient name",
+        "placeholder": "Ahmed Al-Harbi",
+        "helper": "Enter the recipient name as it should appear on the transfer."
+      },
+      "iban": {
+        "label": "Saudi IBAN",
+        "placeholder": "SA03 8000 0000 6080 1016 7519",
+        "helper": "Spaces are accepted. The IBAN will be normalized before confirmation."
+      },
+      "amount": {
+        "label": "Amount",
+        "placeholder": "0.00",
+        "helperFrom": "From",
+        "helperTo": "to",
+        "helperAvailable": "Available:"
+      },
+      "note": {
+        "label": "Note (optional)",
+        "placeholder": "What is this transfer for?",
+        "helper": "Up to {{count}} characters."
+      }
+    },
+    "validation": {
+      "recipientRequired": "Enter the recipient name.",
+      "recipientTooShort": "Recipient name must contain at least 2 characters.",
+      "recipientTooLong": "Recipient name must be {{count}} characters or fewer.",
+      "ibanRequired": "Enter the recipient's Saudi IBAN.",
+      "ibanInvalid": "Enter a Saudi IBAN beginning with SA followed by 22 digits.",
+      "amountRequired": "Enter an amount.",
+      "amountInvalid": "Enter a valid amount with no more than two decimal places.",
+      "amountBelowMinimum": "The minimum transfer is {{amount}}.",
+      "amountAboveMaximum": "The maximum transfer is {{amount}}.",
+      "amountExceedsBalance": "The transfer amount exceeds your available balance.",
+      "noteTooLong": "The note must be {{count}} characters or fewer."
+    },
+    "review": {
+      "title": "Review transfer",
+      "description": "Confirm the recipient and amount before committing this simulated transfer.",
+      "recipient": "Recipient",
+      "iban": "IBAN",
+      "amount": "Amount",
+      "note": "Note",
+      "noNote": "No note",
+      "availableBalance": "Available balance",
+      "balanceAfter": "Balance after transfer",
+      "confirmAction": "Confirm transfer",
+      "confirming": "Confirming transfer",
+      "editAction": "Edit details"
+    },
+    "receipt": {
+      "title": "Transfer complete",
+      "description": "The simulated transfer has been added to this wallet session.",
+      "recipient": "Recipient",
+      "iban": "IBAN",
+      "newBalance": "New balance",
+      "transactionId": "Transaction ID",
+      "date": "Date",
+      "repeatAction": "Make another transfer"
+    },
+    "errors": {
+      "walletUnavailable": "Your wallet data is unavailable. Try loading it again.",
+      "insufficient_balance": "Your available balance is no longer enough for this transfer. Edit the amount and try again.",
+      "invalid_amount": "The transfer amount is no longer valid. Edit it and try again.",
+      "invalid_iban": "The recipient IBAN is no longer valid. Edit it and try again.",
+      "request_failed": "The simulated transfer could not be completed. Try again."
+    },
+    "notifications": {
+      "summary": {
+        "wallet": "Thiqa wallet"
+      },
+      "pending": {
+        "title": "Sending transfer"
+      },
+      "success": {
+        "title": "Transfer complete",
+        "description": "Your wallet balance and recent activity are up to date."
+      },
+      "failed": {
+        "title": "Transfer failed"
+      }
+    }
   },
   "topUp": {
     "title": "Top up wallet",
-    "description": "The top-up flow will be added in the next product phase."
-  },
-  "fields": {
-    "amount": "Amount",
-    "iban": "Saudi IBAN",
-    "recipient": "Recipient",
-    "note": "Note"
-  },
-  "validation": {
-    "amountRequired": "Enter an amount.",
-    "amountInvalid": "Enter a valid amount.",
-    "ibanInvalid": "Enter a Saudi IBAN beginning with SA followed by 22 digits."
+    "description": "Choose an amount and review the simulated top up before confirming.",
+    "details": {
+      "title": "Top-up amount",
+      "description": "Choose a preset or enter a custom amount.",
+      "reviewAction": "Review top up"
+    },
+    "fields": {
+      "presets": {
+        "label": "Suggested amounts"
+      },
+      "amount": {
+        "label": "Custom amount",
+        "placeholder": "0.00",
+        "helperFrom": "From",
+        "helperTo": "to"
+      }
+    },
+    "source": {
+      "bankTransfer": "Bank transfer",
+      "disclaimer": "Demo source only. No bank or payment provider is connected."
+    },
+    "validation": {
+      "amountRequired": "Choose or enter a top-up amount.",
+      "amountInvalid": "Enter a valid amount with no more than two decimal places.",
+      "amountBelowMinimum": "The minimum top up is {{amount}}.",
+      "amountAboveMaximum": "The maximum top up is {{amount}}."
+    },
+    "review": {
+      "title": "Review top up",
+      "description": "Confirm the amount before adding it to this mock wallet session.",
+      "amount": "Top-up amount",
+      "source": "Source",
+      "currentBalance": "Current balance",
+      "balanceAfter": "Balance after top up",
+      "confirmAction": "Confirm top up",
+      "confirming": "Confirming top up",
+      "editAction": "Edit amount"
+    },
+    "receipt": {
+      "title": "Top up complete",
+      "description": "The simulated top up has been added to this wallet session.",
+      "newBalance": "New balance",
+      "source": "Source",
+      "transactionId": "Transaction ID",
+      "date": "Date",
+      "repeatAction": "Top up again"
+    },
+    "errors": {
+      "walletUnavailable": "Your wallet data is unavailable. Try loading it again.",
+      "invalid_amount": "The top-up amount is no longer valid. Edit it and try again.",
+      "insufficient_balance": "The top up could not be applied. Edit the amount and try again.",
+      "invalid_iban": "The top up could not be applied. Try again.",
+      "request_failed": "The simulated top up could not be completed. Try again."
+    },
+    "notifications": {
+      "summary": {
+        "wallet": "Thiqa wallet"
+      },
+      "pending": {
+        "title": "Processing top up"
+      },
+      "success": {
+        "title": "Top up complete",
+        "description": "Your wallet balance and recent activity are up to date."
+      },
+      "failed": {
+        "title": "Top up failed"
+      }
+    }
   }
 }

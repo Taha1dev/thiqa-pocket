@@ -3,8 +3,9 @@ import userEvent from "@testing-library/user-event"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { LoginForm } from "@/features/auth/login-form"
-import "@/i18n/config"
+import i18n from "@/i18n/config"
 import {
+  authenticateMockCredentials,
   demoCredentials,
   mockSessionToken,
 } from "@/infrastructure/auth/mock-auth"
@@ -19,14 +20,43 @@ vi.mock("sileo", () => ({
 }))
 
 describe("login form", () => {
-  beforeEach(() => {
+  const authenticateImmediately = (
+    credentials: Parameters<typeof authenticateMockCredentials>[0]
+  ) => authenticateMockCredentials(credentials, { delayMs: 0 })
+
+  beforeEach(async () => {
     vi.clearAllMocks()
+    await i18n.changeLanguage("en")
+  })
+
+  it("keeps email LTR while allowing localized password direction", async () => {
+    await i18n.changeLanguage("ar")
+    render(
+      <LoginForm
+        authenticate={authenticateImmediately}
+        onAuthenticated={vi.fn()}
+      />
+    )
+
+    expect(document.getElementById("login-email")).toHaveAttribute("dir", "ltr")
+    expect(document.getElementById("login-password")).toHaveAttribute(
+      "dir",
+      "auto"
+    )
+    expect(document.getElementById("login-password")).toHaveClass(
+      "localized-placeholder-direction"
+    )
   })
 
   it("shows localized validation and focuses the first invalid field", async () => {
     const user = userEvent.setup()
 
-    render(<LoginForm onAuthenticated={vi.fn()} />)
+    render(
+      <LoginForm
+        authenticate={authenticateImmediately}
+        onAuthenticated={vi.fn()}
+      />
+    )
 
     await user.click(screen.getByRole("button", { name: "Sign in securely" }))
 
@@ -41,7 +71,12 @@ describe("login form", () => {
   it("preserves the email and clears the password after incorrect credentials", async () => {
     const user = userEvent.setup()
 
-    render(<LoginForm onAuthenticated={vi.fn()} />)
+    render(
+      <LoginForm
+        authenticate={authenticateImmediately}
+        onAuthenticated={vi.fn()}
+      />
+    )
 
     const email = screen.getByLabelText("Email address")
     const password = screen.getByLabelText("Password")
@@ -62,7 +97,12 @@ describe("login form", () => {
     const user = userEvent.setup()
     const onAuthenticated = vi.fn()
 
-    render(<LoginForm onAuthenticated={onAuthenticated} />)
+    render(
+      <LoginForm
+        authenticate={authenticateImmediately}
+        onAuthenticated={onAuthenticated}
+      />
+    )
 
     await user.type(
       screen.getByLabelText("Email address"),
@@ -75,5 +115,40 @@ describe("login form", () => {
       expect(onAuthenticated).toHaveBeenCalledWith(mockSessionToken)
     )
     expect(sileoMocks.success).toHaveBeenCalledOnce()
+  })
+
+  it("shows an immediate pending control while authentication is unresolved", async () => {
+    const user = userEvent.setup()
+    let resolveAuthentication!: (token: string | null) => void
+    const authenticate = vi.fn(
+      () =>
+        new Promise<string | null>((resolve) => {
+          resolveAuthentication = resolve
+        })
+    )
+    const onAuthenticated = vi.fn()
+
+    render(
+      <LoginForm
+        authenticate={authenticate}
+        onAuthenticated={onAuthenticated}
+      />
+    )
+
+    await user.type(
+      screen.getByLabelText("Email address"),
+      demoCredentials.email
+    )
+    await user.type(screen.getByLabelText("Password"), demoCredentials.password)
+    await user.click(screen.getByRole("button", { name: "Sign in securely" }))
+
+    expect(screen.getByRole("button", { name: "Signing in…" })).toBeDisabled()
+    expect(onAuthenticated).not.toHaveBeenCalled()
+
+    resolveAuthentication(mockSessionToken)
+
+    await waitFor(() =>
+      expect(onAuthenticated).toHaveBeenCalledWith(mockSessionToken)
+    )
   })
 })

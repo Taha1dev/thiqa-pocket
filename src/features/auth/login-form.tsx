@@ -24,9 +24,15 @@ import {
 
 interface LoginFormProps {
   readonly onAuthenticated: (token: string) => void
+  readonly authenticate?: (
+    credentials: LoginFormValues
+  ) => Promise<string | null>
 }
 
-export function LoginForm({ onAuthenticated }: LoginFormProps) {
+export function LoginForm({
+  onAuthenticated,
+  authenticate = authenticateMockCredentials,
+}: LoginFormProps) {
   const { t } = useTranslation("auth")
   const schema = useMemo(
     () =>
@@ -52,7 +58,7 @@ export function LoginForm({ onAuthenticated }: LoginFormProps) {
   })
 
   const onSubmit = handleSubmit(async (values) => {
-    const token = await authenticateMockCredentials(values)
+    const token = await authenticate(values)
 
     if (!token) {
       setError("root.credentials", {
@@ -100,6 +106,7 @@ export function LoginForm({ onAuthenticated }: LoginFormProps) {
             <Input
               id="login-email"
               autoComplete="email"
+              dir="ltr"
               inputMode="email"
               placeholder={t("login.fields.emailPlaceholder")}
               type="email"
@@ -119,6 +126,8 @@ export function LoginForm({ onAuthenticated }: LoginFormProps) {
             <Input
               id="login-password"
               autoComplete="current-password"
+              className="localized-placeholder-direction"
+              dir="auto"
               placeholder={t("login.fields.passwordPlaceholder")}
               type="password"
               aria-describedby={

@@ -1,21 +1,174 @@
 {
+  "currency": {
+    "sar": "ر.س"
+  },
+  "steps": {
+    "details": "التفاصيل",
+    "amount": "المبلغ",
+    "review": "المراجعة"
+  },
   "transfer": {
     "title": "إرسال المال",
-    "description": "ستُضاف خطوات التحويل في مرحلة المنتج التالية."
+    "description": "أدخل تفاصيل التحويل ثم راجعها بالكامل قبل التأكيد.",
+    "details": {
+      "title": "تفاصيل التحويل",
+      "description": "أرسل تحويلاً تجريبياً من رصيد محفظتك المتاح.",
+      "reviewAction": "مراجعة التحويل"
+    },
+    "fields": {
+      "recipient": {
+        "label": "اسم المستفيد",
+        "placeholder": "أحمد الحربي",
+        "helper": "أدخل اسم المستفيد كما ينبغي أن يظهر في التحويل."
+      },
+      "iban": {
+        "label": "رقم الآيبان السعودي",
+        "placeholder": "SA03 8000 0000 6080 1016 7519",
+        "helper": "يمكن إدخال المسافات، وسيُوحّد تنسيق الآيبان قبل التأكيد."
+      },
+      "amount": {
+        "label": "المبلغ",
+        "placeholder": "0.00",
+        "helperFrom": "من",
+        "helperTo": "إلى",
+        "helperAvailable": "المتاح:"
+      },
+      "note": {
+        "label": "ملاحظة (اختيارية)",
+        "placeholder": "ما الغرض من هذا التحويل؟",
+        "helper": "بحد أقصى {{count}} حرفاً."
+      }
+    },
+    "validation": {
+      "recipientRequired": "أدخل اسم المستفيد.",
+      "recipientTooShort": "يجب أن يتكون اسم المستفيد من حرفين على الأقل.",
+      "recipientTooLong": "يجب ألا يزيد اسم المستفيد على {{count}} حرفاً.",
+      "ibanRequired": "أدخل رقم الآيبان السعودي للمستفيد.",
+      "ibanInvalid": "أدخل رقم آيبان سعودي يبدأ بـ SA ويتبعه 22 رقماً.",
+      "amountRequired": "أدخل المبلغ.",
+      "amountInvalid": "أدخل مبلغاً صالحاً لا يزيد على منزلتين عشريتين.",
+      "amountBelowMinimum": "الحد الأدنى للتحويل هو {{amount}}.",
+      "amountAboveMaximum": "الحد الأعلى للتحويل هو {{amount}}.",
+      "amountExceedsBalance": "مبلغ التحويل أكبر من رصيدك المتاح.",
+      "noteTooLong": "يجب ألا تزيد الملاحظة على {{count}} حرفاً."
+    },
+    "review": {
+      "title": "مراجعة التحويل",
+      "description": "تأكد من المستفيد والمبلغ قبل تنفيذ هذا التحويل التجريبي.",
+      "recipient": "المستفيد",
+      "iban": "الآيبان",
+      "amount": "المبلغ",
+      "note": "الملاحظة",
+      "noNote": "لا توجد ملاحظة",
+      "availableBalance": "الرصيد المتاح",
+      "balanceAfter": "الرصيد بعد التحويل",
+      "confirmAction": "تأكيد التحويل",
+      "confirming": "جارٍ تأكيد التحويل",
+      "editAction": "تعديل التفاصيل"
+    },
+    "receipt": {
+      "title": "اكتمل التحويل",
+      "description": "أُضيف التحويل التجريبي إلى جلسة المحفظة الحالية.",
+      "recipient": "المستفيد",
+      "iban": "الآيبان",
+      "newBalance": "الرصيد الجديد",
+      "transactionId": "رقم العملية",
+      "date": "التاريخ",
+      "repeatAction": "إجراء تحويل آخر"
+    },
+    "errors": {
+      "walletUnavailable": "بيانات محفظتك غير متاحة. حاول تحميلها مرة أخرى.",
+      "insufficient_balance": "لم يعد رصيدك المتاح كافياً لهذا التحويل. عدّل المبلغ وحاول مجدداً.",
+      "invalid_amount": "لم يعد مبلغ التحويل صالحاً. عدّله وحاول مجدداً.",
+      "invalid_iban": "لم يعد آيبان المستفيد صالحاً. عدّله وحاول مجدداً.",
+      "request_failed": "تعذر إكمال التحويل التجريبي. حاول مرة أخرى."
+    },
+    "notifications": {
+      "summary": {
+        "wallet": "محفظة ثقة"
+      },
+      "pending": {
+        "title": "جارٍ إرسال التحويل"
+      },
+      "success": {
+        "title": "اكتمل التحويل",
+        "description": "تم تحديث رصيد محفظتك والنشاط الأخير."
+      },
+      "failed": {
+        "title": "تعذر التحويل"
+      }
+    }
   },
   "topUp": {
     "title": "شحن المحفظة",
-    "description": "ستُضاف خطوات شحن الرصيد في مرحلة المنتج التالية."
-  },
-  "fields": {
-    "amount": "المبلغ",
-    "iban": "رقم الآيبان السعودي",
-    "recipient": "المستفيد",
-    "note": "ملاحظة"
-  },
-  "validation": {
-    "amountRequired": "أدخل المبلغ.",
-    "amountInvalid": "أدخل مبلغًا صالحًا.",
-    "ibanInvalid": "أدخل رقم آيبان سعودي يبدأ بـ SA ويتبعه 22 رقمًا."
+    "description": "اختر المبلغ وراجع عملية الشحن التجريبية قبل التأكيد.",
+    "details": {
+      "title": "مبلغ الشحن",
+      "description": "اختر مبلغاً مقترحاً أو أدخل مبلغاً مخصصاً.",
+      "reviewAction": "مراجعة الشحن"
+    },
+    "fields": {
+      "presets": {
+        "label": "مبالغ مقترحة"
+      },
+      "amount": {
+        "label": "مبلغ مخصص",
+        "placeholder": "0.00",
+        "helperFrom": "من",
+        "helperTo": "إلى"
+      }
+    },
+    "source": {
+      "bankTransfer": "تحويل بنكي",
+      "disclaimer": "مصدر تجريبي فقط. لا يوجد اتصال ببنك أو مزود دفع."
+    },
+    "validation": {
+      "amountRequired": "اختر مبلغ الشحن أو أدخله.",
+      "amountInvalid": "أدخل مبلغاً صالحاً لا يزيد على منزلتين عشريتين.",
+      "amountBelowMinimum": "الحد الأدنى للشحن هو {{amount}}.",
+      "amountAboveMaximum": "الحد الأعلى للشحن هو {{amount}}."
+    },
+    "review": {
+      "title": "مراجعة الشحن",
+      "description": "تأكد من المبلغ قبل إضافته إلى جلسة المحفظة التجريبية.",
+      "amount": "مبلغ الشحن",
+      "source": "المصدر",
+      "currentBalance": "الرصيد الحالي",
+      "balanceAfter": "الرصيد بعد الشحن",
+      "confirmAction": "تأكيد الشحن",
+      "confirming": "جارٍ تأكيد الشحن",
+      "editAction": "تعديل المبلغ"
+    },
+    "receipt": {
+      "title": "اكتمل شحن الرصيد",
+      "description": "أُضيفت عملية الشحن التجريبية إلى جلسة المحفظة الحالية.",
+      "newBalance": "الرصيد الجديد",
+      "source": "المصدر",
+      "transactionId": "رقم العملية",
+      "date": "التاريخ",
+      "repeatAction": "شحن الرصيد مرة أخرى"
+    },
+    "errors": {
+      "walletUnavailable": "بيانات محفظتك غير متاحة. حاول تحميلها مرة أخرى.",
+      "invalid_amount": "لم يعد مبلغ الشحن صالحاً. عدّله وحاول مجدداً.",
+      "insufficient_balance": "تعذر تطبيق عملية الشحن. عدّل المبلغ وحاول مجدداً.",
+      "invalid_iban": "تعذر تطبيق عملية الشحن. حاول مرة أخرى.",
+      "request_failed": "تعذر إكمال عملية الشحن التجريبية. حاول مرة أخرى."
+    },
+    "notifications": {
+      "summary": {
+        "wallet": "محفظة ثقة"
+      },
+      "pending": {
+        "title": "جارٍ شحن الرصيد"
+      },
+      "success": {
+        "title": "اكتمل شحن الرصيد",
+        "description": "تم تحديث رصيد محفظتك والنشاط الأخير."
+      },
+      "failed": {
+        "title": "تعذر شحن الرصيد"
+      }
+    }
   }
 }

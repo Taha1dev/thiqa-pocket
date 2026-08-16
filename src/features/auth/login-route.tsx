@@ -2,9 +2,11 @@ import { Navigate, useLocation, useNavigate } from "react-router"
 import { useTranslation } from "react-i18next"
 
 import { routePaths } from "@/app/router/paths"
+import { createMoneyFromMinor } from "@/domain/money/money"
 import { LoginForm } from "@/features/auth/login-form"
 import { useAuthStore } from "@/infrastructure/auth/auth-store"
 import { BrandMark } from "@/shared/ui/brand-mark"
+import { CreditCard, type CreditCardWallet } from "@/shared/ui/credit-card"
 import { LanguageSwitcher } from "@/shared/ui/language-switcher"
 import { ThemeToggle } from "@/shared/ui/theme-toggle"
 
@@ -20,11 +22,16 @@ function getIntendedPath(state: unknown): string {
 }
 
 export function Component() {
-  const { t } = useTranslation(["auth", "common"])
+  const { t, i18n } = useTranslation(["auth", "common"])
   const token = useAuthStore((state) => state.token)
   const login = useAuthStore((state) => state.login)
   const location = useLocation()
   const navigate = useNavigate()
+  const loginCardPreview: CreditCardWallet = {
+    id: "wallet_demo_1001",
+    name: t("auth:login.visual.cardHolder"),
+    balance: createMoneyFromMinor(428_550, "SAR"),
+  }
 
   if (token) {
     return <Navigate to={getIntendedPath(location.state)} replace />
@@ -60,6 +67,13 @@ export function Component() {
             <p className="mt-3 max-w-md text-sm leading-6 text-white/65 lg:text-base lg:leading-7">
               {t("auth:login.visual.description")}
             </p>
+            <div className="mt-8 hidden max-w-md lg:block xl:mt-10">
+              <CreditCard
+                locale={i18n.resolvedLanguage ?? "en"}
+                variant="preview"
+                wallet={loginCardPreview}
+              />
+            </div>
           </div>
         </div>
       </section>

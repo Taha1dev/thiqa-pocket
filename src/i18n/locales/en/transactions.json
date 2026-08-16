@@ -1,13 +1,32 @@
 {
   "detail": {
     "title": "Transaction details",
+    "description": "Review the selected wallet movement.",
     "amount": "Amount",
     "counterparty": "Counterparty",
     "status": "Status",
     "date": "Date",
     "reference": "Reference",
+    "detailsHeading": "Transaction information",
+    "category": "Category",
+    "type": "Movement type",
+    "account": "IBAN / account",
+    "transactionId": "Transaction ID",
+    "note": "Note",
+    "failureContext": "Why this transaction failed",
+    "copyAccount": "Copy IBAN or account",
+    "copyTransactionId": "Copy transaction ID",
+    "backToActivity": "Back to activity",
+    "drawerTitle": "Transaction details",
+    "drawerDescription": "Review this wallet transaction.",
+    "close": "Close transaction details",
+    "errorTitle": "Transaction unavailable",
     "notFoundTitle": "Transaction not found",
     "notFoundDescription": "This transaction does not exist or is no longer available."
+  },
+  "type": {
+    "credit": "Money in",
+    "debit": "Money out"
   },
   "status": {
     "completed": "Completed",
@@ -25,5 +44,19 @@
     "invalidData": "Transaction data could not be verified.",
     "unavailable": "The transaction service is unavailable.",
     "generic": "This transaction could not be loaded."
+  },
+  "notifications": {
+    "transactionIdCopied": {
+      "title": "Transaction ID copied",
+      "description": "The reference is ready to paste."
+    },
+    "accountCopied": {
+      "title": "IBAN copied",
+      "description": "The account value is ready to paste."
+    },
+    "copyFailed": {
+      "title": "Could not copy",
+      "description": "Copy the value manually and try again if needed."
+    }
   }
 }

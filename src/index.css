@@ -45,6 +45,7 @@
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
+  --color-field: var(--field);
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
@@ -93,6 +94,7 @@
   --destructive: oklch(0.56 0.2 27);
   --border: oklch(0.89 0.014 83);
   --input: oklch(0.86 0.015 83);
+  --field: oklch(0.985 0.006 84);
   --ring: oklch(0.515 0.088 181);
   --chart-1: oklch(0.515 0.088 181);
   --chart-2: oklch(0.31 0.04 198);
@@ -118,11 +120,13 @@
   --brand-jade-foreground: oklch(0.25 0.038 190);
   --brand-gold: oklch(0.74 0.085 82);
   --brand-gold-foreground: oklch(0.29 0.045 75);
-  --wallet-surface: oklch(0.22 0.023 232);
+  --wallet-surface: oklch(0.23 0.052 187);
+  --wallet-surface-deep: oklch(0.145 0.033 201);
+  --wallet-surface-highlight: oklch(0.43 0.088 178 / 58%);
   --wallet-foreground: oklch(0.985 0.005 84);
-  --wallet-muted: oklch(0.79 0.025 165);
-  --wallet-thread: oklch(0.73 0.064 174 / 12%);
+  --wallet-muted: oklch(0.78 0.026 165);
   --wallet-gold: oklch(0.74 0.085 82);
+  --wallet-gold-glow: oklch(0.8 0.11 82 / 42%);
   --status-completed: oklch(0.92 0.048 164);
   --status-completed-foreground: oklch(0.35 0.085 164);
   --status-pending: oklch(0.93 0.058 88);
@@ -132,43 +136,61 @@
   --chrome: oklch(0.99 0.005 84 / 78%);
   --chrome-border: oklch(0.83 0.014 83 / 64%);
   --surface-shadow: oklch(0.22 0.023 232 / 8%);
+  --toast-surface: oklch(0.18 0.02 225);
+  --toast-foreground: oklch(0.96 0.007 84);
+  --toast-muted: oklch(0.75 0.014 205);
+  --toast-border: oklch(0.38 0.02 211 / 76%);
+  --toast-success: oklch(0.76 0.09 169);
+  --toast-loading: oklch(0.73 0.02 205);
+  --toast-error: oklch(0.78 0.13 25);
 }
 
 html[lang="ar"] {
   --font-family-sans: var(--font-family-arabic);
 }
 
+html[dir="ltr"] .localized-placeholder-direction:placeholder-shown {
+  direction: ltr;
+  text-align: start;
+}
+
+html[dir="rtl"] .localized-placeholder-direction:placeholder-shown {
+  direction: rtl;
+  text-align: start;
+}
+
 .dark {
-  --background: oklch(0.16 0.018 225);
-  --foreground: oklch(0.93 0.009 84);
-  --card: oklch(0.205 0.019 220);
-  --card-foreground: oklch(0.93 0.009 84);
-  --popover: oklch(0.225 0.022 218);
-  --popover-foreground: oklch(0.93 0.009 84);
+  --background: oklch(0.125 0.018 229);
+  --foreground: oklch(0.955 0.008 84);
+  --card: oklch(0.205 0.022 221);
+  --card-foreground: oklch(0.955 0.008 84);
+  --popover: oklch(0.235 0.025 216);
+  --popover-foreground: oklch(0.96 0.007 84);
   --primary: oklch(0.71 0.073 175);
-  --primary-foreground: oklch(0.17 0.022 224);
-  --secondary: oklch(0.255 0.025 207);
-  --secondary-foreground: oklch(0.92 0.01 84);
-  --muted: oklch(0.23 0.018 220);
-  --muted-foreground: oklch(0.7 0.014 210);
-  --accent: oklch(0.285 0.046 181);
-  --accent-foreground: oklch(0.86 0.055 174);
+  --primary-foreground: oklch(0.16 0.022 224);
+  --secondary: oklch(0.255 0.027 207);
+  --secondary-foreground: oklch(0.94 0.009 84);
+  --muted: oklch(0.225 0.021 218);
+  --muted-foreground: oklch(0.735 0.016 205);
+  --accent: oklch(0.3 0.05 181);
+  --accent-foreground: oklch(0.89 0.055 174);
   --destructive: oklch(0.7 0.18 24);
-  --border: oklch(0.32 0.02 215);
-  --input: oklch(0.36 0.022 215);
+  --border: oklch(0.36 0.025 211);
+  --input: oklch(0.41 0.025 211);
+  --field: oklch(0.175 0.021 223);
   --ring: oklch(0.71 0.073 175);
   --chart-1: oklch(0.71 0.073 175);
   --chart-2: oklch(0.66 0.055 203);
   --chart-3: oklch(0.78 0.085 83);
   --chart-4: oklch(0.75 0.065 174);
   --chart-5: oklch(0.72 0.14 28);
-  --sidebar: oklch(0.135 0.018 225);
-  --sidebar-foreground: oklch(0.93 0.009 84);
+  --sidebar: oklch(0.115 0.018 229);
+  --sidebar-foreground: oklch(0.955 0.008 84);
   --sidebar-primary: oklch(0.71 0.073 175);
   --sidebar-primary-foreground: oklch(0.17 0.022 224);
-  --sidebar-accent: oklch(0.25 0.03 195);
-  --sidebar-accent-foreground: oklch(0.93 0.009 84);
-  --sidebar-border: oklch(0.29 0.022 212);
+  --sidebar-accent: oklch(0.27 0.035 195);
+  --sidebar-accent-foreground: oklch(0.955 0.008 84);
+  --sidebar-border: oklch(0.34 0.025 212);
   --sidebar-ring: oklch(0.71 0.073 175);
   --brand-ink: oklch(0.18 0.022 228);
   --brand-ink-foreground: oklch(0.95 0.008 84);
@@ -180,20 +202,29 @@ html[lang="ar"] {
   --brand-jade-foreground: oklch(0.18 0.025 206);
   --brand-gold: oklch(0.78 0.085 83);
   --brand-gold-foreground: oklch(0.21 0.035 75);
-  --wallet-surface: oklch(0.19 0.025 229);
-  --wallet-foreground: oklch(0.96 0.007 84);
-  --wallet-muted: oklch(0.77 0.03 165);
-  --wallet-thread: oklch(0.75 0.065 174 / 14%);
+  --wallet-surface: oklch(0.195 0.05 187);
+  --wallet-surface-deep: oklch(0.115 0.03 202);
+  --wallet-surface-highlight: oklch(0.39 0.082 178 / 54%);
+  --wallet-foreground: oklch(0.975 0.006 84);
+  --wallet-muted: oklch(0.8 0.03 165);
   --wallet-gold: oklch(0.78 0.085 83);
+  --wallet-gold-glow: oklch(0.82 0.11 83 / 46%);
   --status-completed: oklch(0.29 0.06 164);
   --status-completed-foreground: oklch(0.84 0.11 164);
   --status-pending: oklch(0.31 0.065 82);
   --status-pending-foreground: oklch(0.87 0.12 88);
   --status-failed: oklch(0.3 0.075 25);
   --status-failed-foreground: oklch(0.82 0.12 25);
-  --chrome: oklch(0.18 0.02 222 / 78%);
-  --chrome-border: oklch(0.38 0.024 210 / 62%);
-  --surface-shadow: oklch(0.03 0.01 225 / 34%);
+  --chrome: oklch(0.155 0.022 225 / 92%);
+  --chrome-border: oklch(0.39 0.026 210 / 68%);
+  --surface-shadow: oklch(0.02 0.01 225 / 52%);
+  --toast-surface: oklch(0.965 0.008 84);
+  --toast-foreground: oklch(0.22 0.018 225);
+  --toast-muted: oklch(0.5 0.018 215);
+  --toast-border: oklch(0.78 0.015 84 / 78%);
+  --toast-success: oklch(0.48 0.095 174);
+  --toast-loading: oklch(0.5 0.018 215);
+  --toast-error: oklch(0.57 0.18 27);
 }
 
 @layer base {
@@ -208,6 +239,7 @@ html[lang="ar"] {
 
   body {
     @apply min-h-svh bg-background text-foreground antialiased;
+    position: relative;
   }
 
   button:not(:disabled),
@@ -241,17 +273,64 @@ html[lang="ar"] {
     0 18px 48px -34px var(--surface-shadow);
 }
 
-@utility wallet-card-pattern {
+@utility wallet-card-surface {
   background-color: var(--wallet-surface);
   background-image:
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 1.6rem,
-      var(--wallet-thread) 1.6rem,
-      var(--wallet-thread) calc(1.6rem + 1px)
+    radial-gradient(
+      circle at 8% -10%,
+      var(--wallet-surface-highlight),
+      transparent 46%
     ),
-    linear-gradient(145deg, transparent 28%, var(--wallet-thread) 100%);
+    linear-gradient(
+      142deg,
+      color-mix(in oklab, var(--wallet-surface) 92%, white 8%) 0%,
+      var(--wallet-surface) 42%,
+      var(--wallet-surface-deep) 100%
+    );
+}
+
+.wallet-card-tilt {
+  --wallet-tilt-x: 0deg;
+  --wallet-tilt-y: 0deg;
+  transform: perspective(75rem) rotateX(var(--wallet-tilt-x))
+    rotateY(var(--wallet-tilt-y));
+  transform-style: preserve-3d;
+  transition:
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 260ms ease-out;
+  will-change: transform;
+}
+
+.wallet-card-tilt[data-tilting="true"] {
+  transition-duration: 0ms, 180ms;
+}
+
+.wallet-card-shine {
+  background: radial-gradient(
+    circle,
+    var(--wallet-surface-highlight) 0%,
+    transparent 68%
+  );
+  filter: blur(24px);
+  opacity: 0.72;
+  transform: translateZ(1rem);
+}
+
+.wallet-sim-glass {
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 42%), transparent 36%),
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--wallet-gold) 78%, white 22%),
+      var(--wallet-gold)
+    );
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 58%),
+    inset 0 -1px 0 rgb(67 48 10 / 20%),
+    0 10px 28px -12px var(--wallet-gold-glow);
+  -webkit-backdrop-filter: blur(12px) saturate(145%);
+  backdrop-filter: blur(12px) saturate(145%);
+  transform: translateZ(1.25rem);
 }
 
 @utility pressable {
@@ -266,13 +345,35 @@ html[lang="ar"] {
 }
 
 [data-sileo-viewport] {
-  --sileo-duration: 340ms;
-  --sileo-spring-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --sileo-state-success: var(--toast-success);
+  --sileo-state-loading: var(--toast-loading);
+  --sileo-state-error: var(--toast-error);
   font-family: var(--font-family-sans);
 }
 
-[data-sileo-viewport][data-theme="dark"] [data-sileo-description] {
-  color: var(--foreground) !important;
+[data-sileo-viewport] [data-sileo-description] {
+  color: var(--toast-foreground) !important;
+}
+
+[data-sileo-viewport] [data-sileo-title] {
+  color: var(--toast-foreground) !important;
+}
+
+.money-movement-toast {
+  color: var(--toast-foreground);
+}
+
+.money-movement-toast__muted {
+  color: var(--toast-muted);
+}
+
+.money-movement-toast__divider {
+  border-color: var(--toast-border);
+}
+
+[data-slot="drawer-swipe-handle"]::after {
+  background: var(--muted-foreground);
+  opacity: 0.58;
 }
 html[dir="rtl"] [data-sileo-toast] {
   direction: rtl;
@@ -285,11 +386,31 @@ html[dir="rtl"] [data-sileo-toast] {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
+
+  [data-slot="drawer-overlay"] {
+    background: rgb(0 0 0 / 48%);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .wallet-sim-glass {
+    background: var(--wallet-gold);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 @media (prefers-contrast: more) {
   .app-chrome {
     border-color: var(--foreground);
+  }
+
+  [data-slot="drawer-popup"] {
+    border-color: var(--foreground);
+  }
+
+  [data-slot="drawer-swipe-handle"]::after {
+    opacity: 1;
   }
 }
 
@@ -305,5 +426,11 @@ html[dir="rtl"] [data-sileo-toast] {
 
   .pressable:active {
     transform: none;
+  }
+
+  .wallet-card-tilt {
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
   }
 }

@@ -17,7 +17,8 @@
     "logout": "تسجيل الخروج",
     "switchToArabic": "العربية",
     "switchToEnglish": "English",
-    "backToDashboard": "العودة إلى الرئيسية"
+    "backToDashboard": "العودة إلى الرئيسية",
+    "viewReceipt": "عرض الإيصال"
   },
   "states": {
     "loading": "جارٍ التحميل…",
@@ -26,6 +27,10 @@
   },
   "account": {
     "defaultName": "حساب المحفظة"
+  },
+  "languages": {
+    "arabic": "العربية",
+    "english": "English"
   },
   "notifications": {
     "loggedOut": {
@@ -46,6 +51,7 @@
     "mobileNavigation": "التنقل عبر الهاتف",
     "skipToContent": "تخطَّ إلى المحتوى الرئيسي",
     "languageSwitcher": "تغيير اللغة",
+    "languageMenu": "اختر اللغة",
     "themeToggle": "التبديل بين الوضع الفاتح والداكن",
     "accountMenu": "فتح قائمة الحساب",
     "brandHome": "الصفحة الرئيسية لمحفظة ثقة"

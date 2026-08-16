@@ -5,6 +5,11 @@ import { DataValidationError } from "@/shared/errors/data-validation-error"
 import { EntityNotFoundError } from "@/shared/errors/entity-not-found-error"
 import { RequestError } from "@/shared/errors/request-error"
 import {
+  MOCK_REQUEST_DELAYS,
+  waitForMockRequest,
+  type MockRequestDelay,
+} from "@/infrastructure/mock-network/mock-request-delay"
+import {
   mapTransaction,
   mapWalletUser,
   walletDataDtoSchema,
@@ -14,31 +19,8 @@ import {
 interface JsonWalletRepositoryOptions {
   readonly url?: string
   readonly delayMs?: number
+  readonly requestDelay?: MockRequestDelay
   readonly fetcher?: typeof fetch
-}
-
-function waitForDelay(delayMs: number, signal?: AbortSignal): Promise<void> {
-  signal?.throwIfAborted()
-
-  if (delayMs <= 0) {
-    return Promise.resolve()
-  }
-
-  return new Promise((resolve, reject) => {
-    const handleAbort = () => {
-      window.clearTimeout(timeoutId)
-      reject(
-        signal?.reason ??
-          new DOMException("The request was aborted.", "AbortError")
-      )
-    }
-    const timeoutId = window.setTimeout(() => {
-      signal?.removeEventListener("abort", handleAbort)
-      resolve()
-    }, delayMs)
-
-    signal?.addEventListener("abort", handleAbort, { once: true })
-  })
 }
 
 function isAbortError(error: unknown): boolean {
@@ -48,15 +30,18 @@ function isAbortError(error: unknown): boolean {
 export class JsonWalletRepository implements WalletRepository {
   private readonly url: string
   private readonly delayMs: number
+  private readonly requestDelay: MockRequestDelay
   private readonly fetcher: typeof fetch
 
   constructor({
     url = "/mock_data.json",
-    delayMs = 600,
+    delayMs = MOCK_REQUEST_DELAYS.query,
+    requestDelay = waitForMockRequest,
     fetcher = globalThis.fetch,
   }: JsonWalletRepositoryOptions = {}) {
     this.url = url
     this.delayMs = delayMs
+    this.requestDelay = requestDelay
     this.fetcher = fetcher.bind(globalThis)
   }
 
@@ -86,7 +71,7 @@ export class JsonWalletRepository implements WalletRepository {
 
   private async getData(signal?: AbortSignal): Promise<WalletDataDto> {
     try {
-      await waitForDelay(this.delayMs, signal)
+      await this.requestDelay(this.delayMs, signal)
       const response = await this.fetcher(this.url, { signal })
 
       if (!response.ok) {

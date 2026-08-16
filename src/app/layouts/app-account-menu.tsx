@@ -11,6 +11,7 @@ import {
   PopoverTitle,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { Separator } from "@/components/ui/separator"
 import type { WalletUser } from "@/domain/wallet/wallet"
 import { useAuthStore } from "@/infrastructure/auth/auth-store"
 import { LanguageSwitcher } from "@/shared/ui/language-switcher"
@@ -65,14 +66,11 @@ export function AppAccountMenu({
           {displayName.split(" ")[0]}
         </span>
       </PopoverTrigger>
-      <PopoverContent align="end" sideOffset={8}>
-        <PopoverHeader>
-          <div className="mb-1 flex items-center gap-3">
+      <PopoverContent align="end" className="gap-2 p-3" sideOffset={8}>
+        <PopoverHeader className="px-1 py-1">
+          <div className="flex items-center gap-3">
             <span className="grid size-10 place-items-center rounded-xl bg-accent text-accent-foreground">
-              <UserCircle
-                aria-hidden="true"
-                className="size-5"
-              />
+              <UserCircle aria-hidden="true" className="size-5" />
             </span>
             <div className="min-w-0">
               <PopoverTitle className="truncate">{displayName}</PopoverTitle>
@@ -87,11 +85,15 @@ export function AppAccountMenu({
           </div>
         </PopoverHeader>
         {includeLanguage ? (
-          <LanguageSwitcher className="w-full justify-start" />
+          <>
+            <Separator />
+            <LanguageSwitcher className="w-full justify-start" />
+          </>
         ) : null}
+        <Separator />
         <Button
-          className="w-full justify-start text-destructive hover:text-destructive"
-          variant="ghost"
+          className="w-full justify-start"
+          variant="destructive"
           onClick={handleLogout}
         >
           <SignOut aria-hidden="true" data-icon="inline-start" />

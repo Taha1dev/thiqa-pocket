@@ -9,7 +9,10 @@
     "label": "Available balance",
     "personalWallet": "Personal wallet",
     "available": "Available",
-    "accountEnding": "Wallet ending"
+    "virtual": "Virtual",
+    "accountEnding": "Wallet ending",
+    "holder": "Wallet holder",
+    "reference": "Wallet reference"
   },
   "activity": {
     "title": "Recent activity",
