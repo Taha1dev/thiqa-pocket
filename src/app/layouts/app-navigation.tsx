@@ -94,7 +94,7 @@ export function MobileNavigation() {
               <NavLink
                 className={({ isActive }) =>
                   cn(
-                    "group flex min-h-14 pressable flex-col items-center justify-center gap-1 rounded-xl px-1 text-[0.68rem] font-medium text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring",
+                    "group flex min-h-14 pressable flex-col items-center justify-center gap-1 rounded-xl px-1 text-[0.68rem] font-medium text-muted-foreground focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring",
                     isActive && "font-semibold text-foreground"
                   )
                 }

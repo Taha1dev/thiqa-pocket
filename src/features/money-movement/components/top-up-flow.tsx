@@ -339,7 +339,7 @@ export function TopUpFlow({ wallet, repository }: TopUpFlowProps) {
                   />
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-0 end-3 flex items-center text-xs font-medium text-muted-foreground"
+                    className="pointer-events-none absolute inset-y-0 inset-e-3 flex items-center text-xs font-medium text-muted-foreground"
                   >
                     {t("currency.sar")}
                   </span>

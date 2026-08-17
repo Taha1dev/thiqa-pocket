@@ -48,7 +48,7 @@ export function Component() {
         <img
           alt=""
           className="absolute inset-0 size-full object-cover object-[center_58%] opacity-75 mix-blend-luminosity"
-          src="/ruixen_moon.png"
+          src="/ruixen_moon.webp"
         />
         <div className="absolute inset-0 bg-brand-petrol/35 mix-blend-color" />
         <div className="absolute inset-0 bg-linear-to-t from-brand-ink via-brand-ink/10 to-transparent" />

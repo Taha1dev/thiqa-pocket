@@ -67,7 +67,7 @@ export function MoneyMovementToastContent({
 
       <div className="money-movement-toast__divider flex min-w-0 items-end justify-between gap-3 border-t pt-3">
         <bdi
-          className="financial-value text-xl font-semibold tracking-[-0.025em]"
+          className="financial-value text-xl font-semibold tracking-tight"
           dir="ltr"
         >
           {isTransfer ? "\u2212" : "+"}

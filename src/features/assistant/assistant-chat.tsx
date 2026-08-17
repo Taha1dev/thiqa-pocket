@@ -177,14 +177,14 @@ function EmptyAssistantState({
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-1 py-8 text-center sm:py-10">
       <div className="relative mb-5 grid size-14 place-items-center rounded-2xl bg-brand-petrol text-brand-petrol-foreground shadow-[0_16px_40px_-22px_var(--brand-petrol)]">
         <ChatCircleDots aria-hidden="true" className="size-6" weight="fill" />
-        <span className="absolute -end-1 -top-1 grid size-5 place-items-center rounded-full bg-brand-gold text-brand-gold-foreground ring-4 ring-background">
+        <span className="absolute -inset-e-1 -top-1 grid size-5 place-items-center rounded-full bg-brand-gold text-brand-gold-foreground ring-4 ring-background">
           <Sparkle aria-hidden="true" className="size-3" weight="fill" />
         </span>
       </div>
       <span className="rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
         {t("intro.badge")}
       </span>
-      <h2 className="mt-4 text-xl font-semibold tracking-[-0.025em] sm:text-2xl">
+      <h2 className="mt-4 text-xl font-semibold tracking-tight sm:text-2xl">
         {t("intro.title")}
       </h2>
       <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
@@ -344,7 +344,7 @@ export function AssistantChat({
   const hasConversation = messages.length > 0
 
   return (
-    <section className="flex h-[calc(100svh-16rem)] max-h-[42rem] min-h-[24rem] overflow-hidden rounded-3xl border border-border/70 bg-card/45 elevated-surface sm:min-h-[32rem] lg:h-[calc(100svh-14rem)]">
+    <section className="flex h-[calc(100svh-16rem)] max-h-168 min-h-96 overflow-hidden rounded-3xl border border-border/70 bg-card/45 elevated-surface sm:min-h-128 lg:h-[calc(100svh-14rem)]">
       <div className="flex min-w-0 flex-1 flex-col">
         <div
           aria-label={t("conversation.label")}
@@ -418,7 +418,7 @@ export function AssistantChatSkeleton() {
   return (
     <div
       aria-hidden="true"
-      className="flex h-[calc(100svh-16rem)] max-h-[42rem] min-h-[24rem] flex-col rounded-3xl border border-border/70 bg-card/45 p-4 sm:min-h-[32rem] sm:p-6 lg:h-[calc(100svh-14rem)]"
+      className="flex h-[calc(100svh-16rem)] max-h-168 min-h-96 flex-col rounded-3xl border border-border/70 bg-card/45 p-4 sm:min-h-128 sm:p-6 lg:h-[calc(100svh-14rem)]"
     >
       <div className="m-auto flex w-full max-w-xl flex-col items-center">
         <Skeleton className="size-14 rounded-2xl" />

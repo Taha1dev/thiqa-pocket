@@ -63,8 +63,8 @@ export function CreditCard({
       className={cn(
         "wallet-card-tilt relative isolate flex w-full flex-col overflow-hidden rounded-[2rem] border border-white/16 wallet-card-surface text-wallet-foreground elevated-surface",
         variant === "preview"
-          ? "min-h-[21rem] p-5 sm:p-6"
-          : "min-h-[20rem] p-6 sm:min-h-[22rem] sm:p-8",
+          ? "min-h-84 p-5 sm:p-6"
+          : "min-h-80 p-6 sm:min-h-88 sm:p-8",
         className
       )}
       data-tilting="false"
@@ -74,7 +74,7 @@ export function CreditCard({
     >
       <div
         aria-hidden="true"
-        className="wallet-card-shine pointer-events-none absolute -start-20 -top-24 size-72 rounded-full"
+        className="wallet-card-shine pointer-events-none absolute -inset-s-20 -top-24 size-72 rounded-full"
       />
 
       <svg
@@ -106,7 +106,7 @@ export function CreditCard({
           stroke={`url(#${goldGradientId})`}
           strokeWidth="10"
           vectorEffect="non-scaling-stroke"
-          className="[filter:blur(8px)]"
+          className="filter-[blur(8px)]"
         />
         <path
           d="M -35 350 C 210 438 520 350 845 194"
@@ -187,7 +187,7 @@ export function CreditCard({
 
       <dl className="relative z-10 mt-auto flex flex-wrap items-end gap-x-10 gap-y-3 pt-6 text-xs">
         <div className="min-w-0">
-          <dt className="text-[0.65rem] font-semibold tracking-[0.1em] text-wallet-muted uppercase">
+          <dt className="text-[0.65rem] font-semibold tracking-widest text-wallet-muted uppercase">
             {t("balance.holder")}
           </dt>
           <dd className="mt-1.5 truncate font-semibold tracking-[0.03em] text-wallet-foreground uppercase">
@@ -195,7 +195,7 @@ export function CreditCard({
           </dd>
         </div>
         <div className="min-w-0">
-          <dt className="text-[0.65rem] font-semibold tracking-[0.1em] text-wallet-muted uppercase">
+          <dt className="text-[0.65rem] font-semibold tracking-widest text-wallet-muted uppercase">
             {t("balance.reference")}
           </dt>
           <dd className="mt-1.5 font-semibold text-wallet-foreground">
