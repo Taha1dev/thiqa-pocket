@@ -38,6 +38,16 @@
       "description": "Your mock wallet session has ended."
     }
   },
+  "pwa": {
+    "offline": {
+      "message": "You're offline. Wallet data and the assistant may be unavailable until you reconnect."
+    },
+    "update": {
+      "message": "A new Thiqa Pocket version is ready.",
+      "now": "Update now",
+      "later": "Later"
+    }
+  },
   "notFound": {
     "title": "Page not found",
     "description": "The page you requested does not exist or has moved."
@@ -54,6 +64,7 @@
     "languageMenu": "Choose a language",
     "themeToggle": "Toggle light or dark theme",
     "accountMenu": "Open account menu",
-    "brandHome": "Thiqa Pocket dashboard"
+    "brandHome": "Thiqa Pocket dashboard",
+    "pwaNotifications": "Application status"
   }
 }

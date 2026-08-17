@@ -7,6 +7,8 @@ import "sileo/styles.css"
 
 import { appRouter } from "@/app/router"
 import { ThemeProvider, useTheme } from "@/components/theme-provider"
+import { OnlineStatus } from "@/shared/ui/online-status"
+import { UpdatePrompt } from "@/shared/ui/update-prompt"
 
 function AppToaster() {
   const { theme } = useTheme()
@@ -31,6 +33,20 @@ function AppToaster() {
   )
 }
 
+function PwaNotifications() {
+  const { t } = useTranslation("common")
+
+  return (
+    <aside
+      aria-label={t("accessibility.pwaNotifications")}
+      className="pointer-events-none fixed inset-x-3 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-50 flex flex-col items-center gap-2 sm:inset-x-6 lg:bottom-6"
+    >
+      <OnlineStatus />
+      <UpdatePrompt />
+    </aside>
+  )
+}
+
 export function AppProviders() {
   const [queryClient] = useState(
     () =>
@@ -50,6 +66,7 @@ export function AppProviders() {
   return (
     <ThemeProvider>
       <AppToaster />
+      <PwaNotifications />
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={appRouter} />
       </QueryClientProvider>

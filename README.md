@@ -63,6 +63,14 @@ Transaction identity is represented by `/transactions/:transactionId`; transacti
 
 Browser-history routes require hosting support as well as React Router. The root [`vercel.json`](./vercel.json) rewrites non-file requests to `/index.html`, so direct visits and refreshes such as `/transactions/txn_1001` load the SPA. Vercel resolves existing files and functions first, so static assets remain available and `/api/assistant` (plus future `/api/*` functions) continues to route to serverless functions.
 
+## Progressive web app
+
+Production builds generate a web app manifest and a Workbox service worker for the static app shell. Wallet data at `/mock_data.json` and `/api/*` requests, including the Gemini assistant, remain network-only and are never stored in the service worker cache, avoiding stale or sensitive financial responses. The offline notice therefore describes connectivity, not guaranteed access to financial data.
+
+The service worker does not intercept non-GET mutations or use Background Sync, so transfers and top-ups are never durably queued or replayed offline. Updates wait for explicit confirmation in the in-app prompt before activating and reloading.
+
+Test installation, deep-link refreshes, offline shell loading, and updates against `npm run build` followed by `npm run preview`; service workers require a secure context (HTTPS or localhost) and are not enabled by the normal development server. Supported browsers provide their own installation UI, and exact install behavior varies by browser and platform.
+
 ## Simulated financial flows
 
 Transfer and Top Up are client-only simulations; no bank or payment provider is involved. Successful requests return typed receipts and update the shared TanStack Query wallet snapshot for the current session. `public/mock_data.json` remains immutable, so refreshing resets simulated mutations.
