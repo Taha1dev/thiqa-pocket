@@ -31,7 +31,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
       variant="ghost"
       onClick={handleToggle}
     >
-      <CircleHalfTilt aria-hidden="true"  />
+      <CircleHalfTilt aria-hidden="true" />
     </Button>
   )
 }

@@ -13,14 +13,8 @@ import { sileo } from "sileo"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
-import {
-  SAUDI_IBAN_PATTERN,
-  normalizeSaudiIban,
-} from "@/domain/money-movement"
-import type {
-  Transaction,
-  TransactionStatus,
-} from "@/domain/transaction"
+import { SAUDI_IBAN_PATTERN, normalizeSaudiIban } from "@/domain/money-movement"
+import type { Transaction, TransactionStatus } from "@/domain/transaction"
 import { cn } from "@/lib/utils"
 import { copyToClipboard } from "@/shared/browser/copy-to-clipboard"
 import { formatDate } from "@/shared/formatting/format-date"

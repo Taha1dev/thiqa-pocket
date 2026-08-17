@@ -11,9 +11,7 @@ interface AuthState {
 
 type PersistedAuthState = Pick<AuthState, "token">
 
-export const useAuthStore = create<AuthState>()(
-  persist<AuthState, [], [], PersistedAuthState>(
-    (set) => ({
+export const useAuthStore = create<AuthState>()(persist<AuthState, [], [], PersistedAuthState>((set) => ({
       token: null,
       hasHydrated: false,
       login: (token) => set({ token }),

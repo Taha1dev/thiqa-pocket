@@ -1,33 +1,28 @@
 import { useTranslation } from "react-i18next"
 
-import { Skeleton } from "@/components/ui/skeleton"
+import { BrandMark } from "@/shared/ui/brand-mark"
 
 export function RoutePending() {
   const { t } = useTranslation("common")
 
   return (
-    <div className="mx-auto flex min-h-svh w-full max-w-5xl flex-col gap-6 p-6 sm:gap-8 sm:p-8">
-      <span className="sr-only" role="status">
+    <div className="route-pending fixed inset-0 z-50 grid min-h-svh place-items-center bg-background/70 px-6 backdrop-blur-xl backdrop-saturate-125">
+      <span aria-live="polite" className="sr-only" role="status">
         {t("states.loading")}
       </span>
-      <header aria-hidden="true" className="space-y-2">
-        <Skeleton className="h-8 w-48" />
-        <Skeleton className="h-5 w-80 max-w-full" />
-      </header>
+
       <div
         aria-hidden="true"
-        className="rounded-3xl border border-border/70 bg-card p-5 sm:p-7"
+        className="relative grid size-28 place-items-center"
       >
-        <Skeleton className="h-5 w-36" />
-        <Skeleton className="mt-2 h-4 w-64 max-w-full" />
-        <div className="mt-7 space-y-5">
-          {[0, 1, 2].map((item) => (
-            <div className="space-y-2" key={item}>
-              <Skeleton className="h-4 w-24" />
-              <Skeleton className="h-11 w-full rounded-xl" />
-            </div>
-          ))}
-        </div>
+        <span className="absolute inset-0 rounded-full border border-border/70 shadow-[0_14px_36px_var(--surface-shadow)]" />
+        <span
+          className="route-pending__spinner absolute inset-1 animate-spin rounded-full border-2 border-transparent border-e-primary/30 border-t-primary motion-reduce:animate-none"
+          data-slot="route-pending-spinner"
+        />
+        <span className="grid size-16 place-items-center rounded-2xl border border-border/65 bg-card/85 shadow-lg backdrop-blur-md">
+          <BrandMark className="size-11 shadow-sm" />
+        </span>
       </div>
     </div>
   )

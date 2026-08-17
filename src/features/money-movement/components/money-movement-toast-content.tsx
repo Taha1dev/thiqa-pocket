@@ -1,10 +1,7 @@
 import { ArrowRight, Bank, User, Wallet } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next"
 
-import type {
-  TopUpReceipt,
-  TransferReceipt,
-} from "@/domain/money-movement"
+import type { TopUpReceipt, TransferReceipt } from "@/domain/money-movement"
 import { normalizeSaudiIban } from "@/domain/money-movement"
 import { formatMoney } from "@/shared/formatting/format-money"
 

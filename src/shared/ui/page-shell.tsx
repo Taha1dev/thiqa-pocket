@@ -23,7 +23,7 @@ export function PageShell({
       )}
     >
       <header className="flex max-w-2xl flex-col gap-1.5">
-        <h1 className="text-2xl font-semibold tracking-[-0.025em] sm:text-3xl">
+        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           {title}
         </h1>
         <p className="text-sm leading-6 text-muted-foreground sm:text-base">

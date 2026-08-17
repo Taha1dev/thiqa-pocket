@@ -19,7 +19,7 @@ import {
   createTopUpSchema,
   type TopUpFormValues,
 } from "@/features/top-up/schema"
-import { MoneyMovementError } from "@/shared/errors/errors"
+import { MoneyMovementError } from "@/shared/errors"
 import { formatMoney } from "@/shared/formatting/format-money"
 
 export function getTopUpErrorMessage(

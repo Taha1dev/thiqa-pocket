@@ -9,7 +9,7 @@ import {
 import { assistantProvider } from "@/data/assistant-client"
 import { walletRepository } from "@/data/wallet-repository"
 import { walletDataQueryOptions } from "@/data/wallet-queries"
-import { DataValidationError, RequestError } from "@/shared/errors/errors"
+import { DataValidationError, RequestError } from "@/shared/errors"
 import { PageShell } from "@/shared/ui/page-shell"
 import { PageState } from "@/shared/ui/page-state"
 

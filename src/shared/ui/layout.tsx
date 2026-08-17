@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
-import { NavLink, Outlet } from "react-router"
+import { NavLink, Outlet, ScrollRestoration } from "react-router"
 import { useTranslation } from "react-i18next"
 
-import { AppAccountMenu } from "@/app/account-menu"
-import { DesktopNavigation, MobileNavigation } from "@/app/navigation"
+import { AppAccountMenu } from "@/shared/ui/account-menu"
+import { DesktopNavigation, MobileNavigation } from "@/shared/ui/navigation"
 import { routePaths } from "@/app/routes/paths"
 import { walletRepository } from "@/data/wallet-repository"
 import { walletDataQueryOptions } from "@/data/wallet-queries"
@@ -77,6 +77,7 @@ export function AuthenticatedLayout() {
         className="px-4 py-6 pb-[calc(6.25rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-8 sm:pb-[calc(6.5rem+env(safe-area-inset-bottom))] lg:px-8 lg:pb-10"
       >
         <Outlet />
+        <ScrollRestoration />
       </main>
 
       <MobileNavigation />

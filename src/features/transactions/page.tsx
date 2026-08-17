@@ -18,7 +18,7 @@ import {
   DataValidationError,
   EntityNotFoundError,
   RequestError,
-} from "@/shared/errors/errors"
+} from "@/shared/errors"
 
 interface TransactionPageProps {
   readonly repository?: WalletRepository

@@ -31,66 +31,63 @@ export function LoginForm({
   authenticate = authenticateMockCredentials,
 }: LoginFormProps) {
   const { t } = useTranslation("auth")
-  const schema = useMemo(
-    () =>
-      createLoginSchema({
-        emailRequired: t("login.validation.emailRequired"),
-        emailInvalid: t("login.validation.emailInvalid"),
-        passwordRequired: t("login.validation.passwordRequired"),
-        passwordMinimum: t("login.validation.passwordMinimum"),
-      }),
+  const schema = useMemo(() =>
+    createLoginSchema({
+      emailRequired: t("login.validation.emailRequired"),
+      emailInvalid: t("login.validation.emailInvalid"),
+      passwordRequired: t("login.validation.passwordRequired"),
+      passwordMinimum: t("login.validation.passwordMinimum"),
+    }),
     [t]
   )
   const {
     formState: { errors, isSubmitting },
-    handleSubmit,
-    register,
-    resetField,
-    setError,
-    setFocus,
+    handleSubmit, register, resetField, setError, setFocus,
   } = useForm<LoginFormValues>({
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "sara@thiqa.sa", password: "Thiqa123!" },
     resolver: zodResolver(schema),
     shouldFocusError: true,
   })
 
-  const onSubmit = handleSubmit(async (values) => {
-    let token: string | null
+  const onSubmit = handleSubmit(
+    async (values) => {
+      let token: string | null
 
-    try {
-      token = await authenticate(values)
-    } catch {
-      setError("root.request", {
-        type: "server",
-        message: t("login.errors.requestFailed"),
-      })
-      sileo.error({
-        title: t("login.notifications.unavailable.title"),
-        description: t("login.notifications.unavailable.description"),
-      })
-      return
-    }
+      try {
+        token = await authenticate(values)
+      } catch {
 
-    if (!token) {
-      setError("root.credentials", {
-        type: "server",
-        message: t("login.errors.incorrectCredentials"),
-      })
-      resetField("password")
-      setFocus("email")
-      sileo.error({
-        title: t("login.notifications.failed.title"),
-        description: t("login.notifications.failed.description"),
-      })
-      return
-    }
+        setError("root.request", {
+          type: "server",
+          message: t("login.errors.requestFailed"),
+        })
+        sileo.error({
+          title: t("login.notifications.unavailable.title"),
+          description: t("login.notifications.unavailable.description"),
+        })
+        return
+      }
 
-    sileo.success({
-      title: t("login.notifications.success.title"),
-      description: t("login.notifications.success.description"),
+      if (!token) {
+        setError("root.credentials", {
+          type: "server",
+          message: t("login.errors.incorrectCredentials"),
+        })
+        resetField("password")
+        setFocus("email")
+        sileo.error({
+          title: t("login.notifications.failed.title"),
+          description: t("login.notifications.failed.description"),
+        })
+        return
+      }
+
+      sileo.success({
+        title: t("login.notifications.success.title"),
+        description: t("login.notifications.success.description"),
+      })
+      onAuthenticated(token)
     })
-    onAuthenticated(token)
-  })
 
   const submissionError =
     errors.root?.credentials?.message ?? errors.root?.request?.message

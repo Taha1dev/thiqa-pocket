@@ -8,7 +8,7 @@ import type { WalletUser } from "@/domain/wallet"
 import { AssistantPage } from "@/features/assistant/page"
 import i18n from "@/i18n/config"
 import { walletRepository } from "@/data/wallet-repository"
-import { RequestError } from "@/shared/errors/errors"
+import { RequestError } from "@/shared/errors"
 
 const wallet: WalletUser = {
   id: "usr_test",

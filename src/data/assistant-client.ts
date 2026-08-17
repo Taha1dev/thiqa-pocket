@@ -2,7 +2,7 @@ import { z } from "zod"
 
 import type { Transaction } from "@/domain/transaction"
 import type { WalletUser } from "@/domain/wallet"
-import { RequestError } from "@/shared/errors/errors"
+import { RequestError } from "@/shared/errors"
 
 export interface AssistantRequest {
   readonly question: string
@@ -34,9 +34,7 @@ function normalizeLocale(locale: string): "en" | "ar" {
   return locale.toLowerCase().startsWith("ar") ? "ar" : "en"
 }
 
-export function createHttpAssistantProvider(
-  endpoint = "/api/assistant"
-): AssistantProvider {
+export function createHttpAssistantProvider(endpoint = "/api/assistant"): AssistantProvider {
   return {
     async ask(
       request: AssistantRequest,

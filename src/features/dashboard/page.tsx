@@ -6,12 +6,11 @@ import { DashboardContent } from "@/features/dashboard/dashboard-content"
 import { DashboardSkeleton } from "@/features/dashboard/components/dashboard-skeleton"
 import { walletRepository } from "@/data/wallet-repository"
 import { walletDataQueryOptions } from "@/data/wallet-queries"
-import { DataValidationError, RequestError } from "@/shared/errors/errors"
+import { DataValidationError, RequestError } from "@/shared/errors"
 import { PageShell } from "@/shared/ui/page-shell"
 import { PageState } from "@/shared/ui/page-state"
 
-function getWalletErrorMessage(
-  error: unknown,
+function getWalletErrorMessage(error: unknown,
   messages: Record<"invalidData" | "unavailable" | "generic", string>
 ): string {
   if (error instanceof DataValidationError) {
@@ -32,7 +31,7 @@ function getFirstName(name: string): string {
 export function DashboardPage() {
   const { t, i18n } = useTranslation(["wallet", "common"])
   const walletDataQuery = useQuery(walletDataQueryOptions(walletRepository))
-
+  console.log(walletDataQuery);
   if (walletDataQuery.isPending) {
     return (
       <PageShell

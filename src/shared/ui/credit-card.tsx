@@ -159,9 +159,7 @@ export function CreditCard({
       </div>
 
       <div className="relative z-10 mt-5">
-        <p
-          className="text-[0.68rem] font-semibold tracking-[0.12em] text-wallet-muted uppercase"
-        >
+        <p className="text-[0.68rem] font-semibold tracking-[0.12em] text-wallet-muted uppercase">
           {t("balance.label")}
         </p>
         <bdi

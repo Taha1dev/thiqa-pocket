@@ -9,12 +9,13 @@ describe("route pending UI", () => {
     await i18n.changeLanguage("en")
   })
 
-  it("uses visible skeletons while retaining loading text only for screen readers", () => {
+  it("shows a branded spinner while retaining loading text for screen readers", () => {
     const { container } = render(<RoutePending />)
 
     expect(
-      container.querySelectorAll('[data-slot="skeleton"]')
-    ).not.toHaveLength(0)
+      container.querySelector('[data-slot="route-pending-spinner"]')
+    ).toBeInTheDocument()
+    expect(container.querySelector('img[src="/favicon.svg"]')).toBeVisible()
     expect(screen.getByRole("status")).toHaveTextContent("Loading…")
     expect(screen.getByRole("status")).toHaveClass("sr-only")
   })

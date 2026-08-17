@@ -10,7 +10,7 @@ import type { Transaction } from "@/domain/transaction"
 import type { WalletUser } from "@/domain/wallet"
 import { AssistantChat } from "@/features/assistant/assistant-chat"
 import i18n from "@/i18n/config"
-import { RequestError } from "@/shared/errors/errors"
+import { RequestError } from "@/shared/errors"
 
 const wallet: WalletUser = {
   id: "usr_test",

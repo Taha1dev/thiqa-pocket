@@ -4,7 +4,7 @@ import { createMoney } from "@/domain/money"
 import type { Transaction } from "@/domain/transaction"
 import type { WalletUser } from "@/domain/wallet"
 import { createHttpAssistantProvider } from "@/data/assistant-client"
-import { RequestError } from "@/shared/errors/errors"
+import { RequestError } from "@/shared/errors"
 
 const wallet: WalletUser = {
   id: "usr_test",

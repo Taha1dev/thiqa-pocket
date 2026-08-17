@@ -5,7 +5,7 @@ import {
   waitForMockRequest,
   type MockRequestDelay,
 } from "@/data/mock-delay"
-import { DataValidationError, RequestError } from "@/shared/errors/errors"
+import { DataValidationError, RequestError } from "@/shared/errors"
 
 export interface WalletRepository {
   getWalletData(signal?: AbortSignal): Promise<WalletData>

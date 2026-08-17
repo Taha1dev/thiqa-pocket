@@ -21,7 +21,7 @@ import { TransferFlow } from "@/features/transfer/transfer-flow"
 import i18n from "@/i18n/config"
 import { MockMoneyMovementRepository } from "@/data/money-movement-repository"
 import { walletQueryKey } from "@/data/wallet-queries"
-import { MoneyMovementError } from "@/shared/errors/errors"
+import { MoneyMovementError } from "@/shared/errors"
 
 interface CapturedToastOptions {
   readonly title?: string
@@ -36,7 +36,7 @@ interface CapturedPromiseOptions<T> {
   readonly loading: CapturedToastOptions
   readonly success: CapturedToastOptions | ((data: T) => CapturedToastOptions)
   readonly error:
-  CapturedToastOptions | ((error: unknown) => CapturedToastOptions)
+    CapturedToastOptions | ((error: unknown) => CapturedToastOptions)
 }
 
 const sileoMocks = vi.hoisted(() => ({

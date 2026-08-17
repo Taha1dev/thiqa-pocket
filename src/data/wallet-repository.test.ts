@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest"
 
 import { JsonWalletRepository } from "@/data/wallet-repository"
-import { DataValidationError, RequestError } from "@/shared/errors/errors"
+import { DataValidationError, RequestError } from "@/shared/errors"
 
 const validData = {
   user: {

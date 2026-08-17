@@ -430,6 +430,12 @@ html[dir="rtl"] [data-sileo-toast] {
 }
 
 @media (prefers-reduced-transparency: reduce) {
+  .route-pending {
+    background: var(--background);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
   .app-chrome {
     background: var(--card);
     -webkit-backdrop-filter: none;
@@ -444,6 +450,14 @@ html[dir="rtl"] [data-sileo-toast] {
 }
 
 @media (prefers-contrast: more) {
+  .route-pending {
+    background: var(--background);
+  }
+
+  .route-pending__spinner {
+    border-block-start-color: var(--foreground);
+  }
+
   .app-chrome {
     border-color: var(--foreground);
   }

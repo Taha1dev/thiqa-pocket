@@ -27,6 +27,7 @@ export function LoginPage() {
   const login = useAuthStore((state) => state.login)
   const location = useLocation()
   const navigate = useNavigate()
+
   const loginCardPreview: CreditCardWallet = {
     id: "wallet_demo_1001",
     name: t("auth:login.visual.cardHolder"),

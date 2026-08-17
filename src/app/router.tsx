@@ -1,6 +1,6 @@
 import { createBrowserRouter, type RouteObject } from "react-router"
 
-import { AuthenticatedLayout } from "@/app/layout"
+import { AuthenticatedLayout } from "@/shared/ui/layout"
 import { ProtectedRoute } from "@/app/routes/protected-route"
 import { RootRedirect } from "@/app/routes/root-redirect"
 import { routePaths } from "@/app/routes/paths"

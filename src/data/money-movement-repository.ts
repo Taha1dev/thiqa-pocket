@@ -14,7 +14,7 @@ import {
   waitForMockRequest,
   type MockRequestDelay,
 } from "@/data/mock-delay"
-import { MoneyMovementError } from "@/shared/errors/errors"
+import { MoneyMovementError } from "@/shared/errors"
 
 export interface MoneyMovementRepository {
   transfer(

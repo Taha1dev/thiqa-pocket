@@ -21,7 +21,7 @@ import {
   createTransferSchema,
   type TransferFormValues,
 } from "@/features/transfer/schema"
-import { MoneyMovementError } from "@/shared/errors/errors"
+import { MoneyMovementError } from "@/shared/errors"
 import { formatMoney } from "@/shared/formatting/format-money"
 
 export interface TransferReviewValues {

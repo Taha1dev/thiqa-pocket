@@ -1,7 +1,7 @@
 import { queryOptions } from "@tanstack/react-query"
 
 import type { WalletRepository } from "@/data/wallet-repository"
-import { EntityNotFoundError } from "@/shared/errors/errors"
+import { EntityNotFoundError } from "@/shared/errors"
 
 export const walletQueryKey = ["wallet-data"] as const
 
