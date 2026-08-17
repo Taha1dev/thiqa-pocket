@@ -53,9 +53,10 @@ Ask AI is a read-only, session-only demo for questions about the supplied wallet
 
 Gemini runs only inside the Vercel serverless function and is constrained to answer from the supplied wallet data. `GEMINI_API_KEY` is read server-side and never enters the Vite client bundle. Chat messages stay in component memory and are discarded on refresh. This bonus feature is a product demonstration, not financial advice, and it cannot execute transfers or top-ups.
 
-For local end-to-end development, add `GEMINI_API_KEY` to the uncommitted `.env.local` file and run:
+For local end-to-end development, configure `GEMINI_API_KEY` for the linked Vercel project's Development environment, then pull that environment and start the local function runtime:
 
 ```bash
+npx vercel pull
 npx vercel dev
 ```
 

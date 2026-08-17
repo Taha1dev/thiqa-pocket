@@ -23,6 +23,13 @@ interface JsonWalletRepositoryOptions {
   readonly fetcher?: typeof fetch
 }
 
+interface SharedDataRequest {
+  readonly controller: AbortController
+  readonly promise: Promise<WalletDataDto>
+  consumers: number
+  settled: boolean
+}
+
 function isAbortError(error: unknown): boolean {
   return error instanceof DOMException && error.name === "AbortError"
 }
@@ -32,6 +39,7 @@ export class JsonWalletRepository implements WalletRepository {
   private readonly delayMs: number
   private readonly requestDelay: MockRequestDelay
   private readonly fetcher: typeof fetch
+  private dataRequest?: SharedDataRequest
 
   constructor({
     url = "/mock_data.json",
@@ -70,6 +78,83 @@ export class JsonWalletRepository implements WalletRepository {
   }
 
   private async getData(signal?: AbortSignal): Promise<WalletDataDto> {
+    signal?.throwIfAborted()
+
+    const request = this.dataRequest ?? this.createDataRequest()
+    request.consumers += 1
+
+    return new Promise((resolve, reject) => {
+      let released = false
+
+      const release = () => {
+        if (released) {
+          return
+        }
+
+        released = true
+        signal?.removeEventListener("abort", handleAbort)
+        request.consumers -= 1
+
+        if (request.consumers === 0 && !request.settled) {
+          if (this.dataRequest === request) {
+            this.dataRequest = undefined
+          }
+          request.controller.abort()
+        }
+      }
+
+      const handleAbort = () => {
+        release()
+        reject(
+          signal?.reason ??
+            new DOMException("The request was aborted.", "AbortError")
+        )
+      }
+
+      signal?.addEventListener("abort", handleAbort, { once: true })
+      request.promise.then(
+        (data) => {
+          if (!released) {
+            release()
+            resolve(data)
+          }
+        },
+        (error: unknown) => {
+          if (!released) {
+            release()
+            reject(error)
+          }
+        }
+      )
+    })
+  }
+
+  private createDataRequest(): SharedDataRequest {
+    const controller = new AbortController()
+    const request: SharedDataRequest = {
+      controller,
+      promise: this.fetchData(controller.signal),
+      consumers: 0,
+      settled: false,
+    }
+
+    this.dataRequest = request
+    request.promise.then(
+      () => this.releaseDataRequest(request),
+      () => this.releaseDataRequest(request)
+    )
+
+    return request
+  }
+
+  private releaseDataRequest(request: SharedDataRequest): void {
+    request.settled = true
+    if (this.dataRequest === request) {
+      this.dataRequest = undefined
+    }
+  }
+
+  private async fetchData(signal: AbortSignal): Promise<WalletDataDto> {
     try {
       await this.requestDelay(this.delayMs, signal)
       const response = await this.fetcher(this.url, { signal })

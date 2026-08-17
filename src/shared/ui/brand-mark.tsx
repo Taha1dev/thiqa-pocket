@@ -16,11 +16,8 @@ export function BrandMark({ className, imageClassName }: BrandMarkProps) {
     >
       <img
         alt=""
-        className={cn(
-          "absolute inset-0 size-full scale-125",
-          imageClassName
-        )}
-        src="/thiqa-default-icon.png"
+        className={cn("absolute inset-0 size-full scale-125", imageClassName)}
+        src="/favicon.svg"
       />
     </span>
   )
