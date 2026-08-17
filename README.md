@@ -18,6 +18,8 @@ npm run test
 npm run build
 ```
 
+GitHub Actions runs typecheck → lint → tests → build for pull requests and pushes to `main`.
+
 ## Architecture
 
 - `src/app` owns provider composition, layouts, and the centralized route tree.
