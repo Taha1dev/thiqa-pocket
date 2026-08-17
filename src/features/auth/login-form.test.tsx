@@ -58,9 +58,12 @@ describe("login form", () => {
       />
     )
 
+    const email = screen.getByLabelText("Email address")
+    const password = screen.getByLabelText("Password")
+    await user.clear(email)
+    await user.clear(password)
     await user.click(screen.getByRole("button", { name: "Sign in securely" }))
 
-    const email = screen.getByLabelText("Email address")
     expect(
       await screen.findByText("Enter your email address.")
     ).toBeInTheDocument()
@@ -68,7 +71,7 @@ describe("login form", () => {
     expect(email).toHaveFocus()
   })
 
-  it("preserves the email and clears the password after incorrect credentials", async () => {
+  it("preserves the email and resets the password after incorrect credentials", async () => {
     const user = userEvent.setup()
 
     render(
@@ -80,6 +83,8 @@ describe("login form", () => {
 
     const email = screen.getByLabelText("Email address")
     const password = screen.getByLabelText("Password")
+    await user.clear(email)
+    await user.clear(password)
     await user.type(email, demoCredentials.email)
     await user.type(password, "WrongPass1!")
     await user.click(screen.getByRole("button", { name: "Sign in securely" }))
@@ -88,7 +93,7 @@ describe("login form", () => {
       await screen.findByText(/email or password is incorrect/i)
     ).toBeInTheDocument()
     expect(email).toHaveValue(demoCredentials.email)
-    expect(password).toHaveValue("")
+    expect(password).toHaveValue(demoCredentials.password)
     expect(email).toHaveFocus()
     expect(sileoMocks.error).toHaveBeenCalledOnce()
   })
@@ -104,11 +109,12 @@ describe("login form", () => {
       />
     )
 
-    await user.type(
-      screen.getByLabelText("Email address"),
-      demoCredentials.email
-    )
-    await user.type(screen.getByLabelText("Password"), demoCredentials.password)
+    const email = screen.getByLabelText("Email address")
+    const password = screen.getByLabelText("Password")
+    await user.clear(email)
+    await user.clear(password)
+    await user.type(email, demoCredentials.email)
+    await user.type(password, demoCredentials.password)
     await user.click(screen.getByRole("button", { name: "Sign in securely" }))
 
     await waitFor(() =>
@@ -129,11 +135,12 @@ describe("login form", () => {
       />
     )
 
-    await user.type(
-      screen.getByLabelText("Email address"),
-      demoCredentials.email
-    )
-    await user.type(screen.getByLabelText("Password"), demoCredentials.password)
+    const email = screen.getByLabelText("Email address")
+    const password = screen.getByLabelText("Password")
+    await user.clear(email)
+    await user.clear(password)
+    await user.type(email, demoCredentials.email)
+    await user.type(password, demoCredentials.password)
     await user.click(screen.getByRole("button", { name: "Sign in securely" }))
 
     expect(
@@ -164,11 +171,12 @@ describe("login form", () => {
       />
     )
 
-    await user.type(
-      screen.getByLabelText("Email address"),
-      demoCredentials.email
-    )
-    await user.type(screen.getByLabelText("Password"), demoCredentials.password)
+    const email = screen.getByLabelText("Email address")
+    const password = screen.getByLabelText("Password")
+    await user.clear(email)
+    await user.clear(password)
+    await user.type(email, demoCredentials.email)
+    await user.type(password, demoCredentials.password)
     await user.click(screen.getByRole("button", { name: "Sign in securely" }))
 
     expect(screen.getByRole("button", { name: "Signing in…" })).toBeDisabled()
