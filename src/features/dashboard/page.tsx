@@ -31,7 +31,7 @@ function getFirstName(name: string): string {
 export function DashboardPage() {
   const { t, i18n } = useTranslation(["wallet", "common"])
   const walletDataQuery = useQuery(walletDataQueryOptions(walletRepository))
-  console.log(walletDataQuery);
+  
   if (walletDataQuery.isPending) {
     return (
       <PageShell

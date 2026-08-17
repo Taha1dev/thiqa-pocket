@@ -59,7 +59,7 @@ export function TransactionRow({
 
   return (
     <Link
-      className="group grid pressable grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl px-2 py-3 hover:bg-muted/70 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring sm:gap-4 sm:px-3 sm:py-3.5"
+      className="group grid pressable grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl px-2 py-3 hover:bg-muted/70 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring sm:gap-4 sm:px-3 sm:py-3.5"
       to={getTransactionPath(transaction.id)}
     >
       <span className="grid size-10 place-items-center rounded-xl bg-accent text-accent-foreground sm:size-11">

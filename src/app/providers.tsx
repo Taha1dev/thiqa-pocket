@@ -56,6 +56,7 @@ export function AppProviders() {
             staleTime: 5 * 60 * 1000,
             retry: 1,
             refetchOnMount: false,
+            // on real production this option could be enabled
             refetchOnReconnect: false,
             refetchOnWindowFocus: false,
           },
