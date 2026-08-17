@@ -424,10 +424,6 @@ html[dir="rtl"] .localized-placeholder-direction:placeholder-shown {
   border-color: var(--toast-border);
 }
 
-[data-slot="drawer-swipe-handle"]::after {
-  background: var(--muted-foreground);
-  opacity: 0.58;
-}
 html[dir="rtl"] [data-sileo-toast] {
   direction: rtl;
   text-align: start;
@@ -436,12 +432,6 @@ html[dir="rtl"] [data-sileo-toast] {
 @media (prefers-reduced-transparency: reduce) {
   .app-chrome {
     background: var(--card);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
-
-  [data-slot="drawer-overlay"] {
-    background: rgb(0 0 0 / 48%);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -456,14 +446,6 @@ html[dir="rtl"] [data-sileo-toast] {
 @media (prefers-contrast: more) {
   .app-chrome {
     border-color: var(--foreground);
-  }
-
-  [data-slot="drawer-popup"] {
-    border-color: var(--foreground);
-  }
-
-  [data-slot="drawer-swipe-handle"]::after {
-    opacity: 1;
   }
 }
 

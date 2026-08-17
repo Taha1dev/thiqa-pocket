@@ -4,13 +4,13 @@ import { act, render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-import type { AssistantProvider } from "@/domain/assistant/assistant-provider"
-import { createMoney } from "@/domain/money/money"
-import type { Transaction } from "@/domain/transaction/transaction"
-import type { WalletUser } from "@/domain/wallet/wallet"
+import type { AssistantProvider } from "@/data/assistant-client"
+import { createMoney } from "@/domain/money"
+import type { Transaction } from "@/domain/transaction"
+import type { WalletUser } from "@/domain/wallet"
 import { AssistantChat } from "@/features/assistant/assistant-chat"
 import i18n from "@/i18n/config"
-import { RequestError } from "@/shared/errors/request-error"
+import { RequestError } from "@/shared/errors/errors"
 
 const wallet: WalletUser = {
   id: "usr_test",

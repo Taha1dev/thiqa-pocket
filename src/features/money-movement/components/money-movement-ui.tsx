@@ -2,7 +2,7 @@ import { Check, CheckCircle } from "@phosphor-icons/react"
 import type { ReactNode, Ref } from "react"
 import { Link } from "react-router"
 
-import { routePaths } from "@/app/router/paths"
+import { routePaths } from "@/app/routes/paths"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"

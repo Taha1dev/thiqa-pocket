@@ -8,7 +8,7 @@ import {
   authenticateMockCredentials,
   demoCredentials,
   mockSessionToken,
-} from "@/infrastructure/auth/mock-auth"
+} from "@/features/auth/mock-auth"
 
 const sileoMocks = vi.hoisted(() => ({
   error: vi.fn(),
@@ -115,6 +115,35 @@ describe("login form", () => {
       expect(onAuthenticated).toHaveBeenCalledWith(mockSessionToken)
     )
     expect(sileoMocks.success).toHaveBeenCalledOnce()
+  })
+
+  it("reports an unexpected authentication failure without leaking the error", async () => {
+    const user = userEvent.setup()
+    const authenticate = vi.fn().mockRejectedValue(new Error("private detail"))
+    const onAuthenticated = vi.fn()
+
+    render(
+      <LoginForm
+        authenticate={authenticate}
+        onAuthenticated={onAuthenticated}
+      />
+    )
+
+    await user.type(
+      screen.getByLabelText("Email address"),
+      demoCredentials.email
+    )
+    await user.type(screen.getByLabelText("Password"), demoCredentials.password)
+    await user.click(screen.getByRole("button", { name: "Sign in securely" }))
+
+    expect(
+      await screen.findByText(/could not complete sign-in/i)
+    ).toBeInTheDocument()
+    expect(screen.queryByText(/private detail/i)).not.toBeInTheDocument()
+    expect(onAuthenticated).not.toHaveBeenCalled()
+    expect(sileoMocks.error).toHaveBeenCalledWith(
+      expect.objectContaining({ title: "Sign-in unavailable" })
+    )
   })
 
   it("shows an immediate pending control while authentication is unresolved", async () => {

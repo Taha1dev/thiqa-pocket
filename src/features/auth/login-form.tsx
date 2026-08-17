@@ -13,14 +13,11 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import {
-  createLoginSchema,
-  type LoginFormValues,
-} from "@/features/auth/login-schema"
+import { createLoginSchema, type LoginFormValues } from "@/features/auth/schema"
 import {
   authenticateMockCredentials,
   demoCredentials,
-} from "@/infrastructure/auth/mock-auth"
+} from "@/features/auth/mock-auth"
 
 interface LoginFormProps {
   readonly onAuthenticated: (token: string) => void
@@ -58,7 +55,21 @@ export function LoginForm({
   })
 
   const onSubmit = handleSubmit(async (values) => {
-    const token = await authenticate(values)
+    let token: string | null
+
+    try {
+      token = await authenticate(values)
+    } catch {
+      setError("root.request", {
+        type: "server",
+        message: t("login.errors.requestFailed"),
+      })
+      sileo.error({
+        title: t("login.notifications.unavailable.title"),
+        description: t("login.notifications.unavailable.description"),
+      })
+      return
+    }
 
     if (!token) {
       setError("root.credentials", {
@@ -81,7 +92,8 @@ export function LoginForm({
     onAuthenticated(token)
   })
 
-  const credentialsError = errors.root?.credentials?.message
+  const submissionError =
+    errors.root?.credentials?.message ?? errors.root?.request?.message
 
   return (
     <>
@@ -141,9 +153,9 @@ export function LoginForm({
             </FieldError>
           </Field>
 
-          {credentialsError ? (
-            <FieldError id="login-credentials-error">
-              {credentialsError}
+          {submissionError ? (
+            <FieldError id="login-submission-error">
+              {submissionError}
             </FieldError>
           ) : null}
 

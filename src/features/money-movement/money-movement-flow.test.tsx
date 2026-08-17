@@ -12,20 +12,16 @@ import userEvent from "@testing-library/user-event"
 import { MemoryRouter } from "react-router"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-import { createMoney, createMoneyFromMinor } from "@/domain/money/money"
-import type {
-  TopUpReceipt,
-  TransferReceipt,
-} from "@/domain/money-movement/money-movement"
-import type { MoneyMovementRepository } from "@/domain/money-movement/money-movement-repository"
-import type { Transaction } from "@/domain/transaction/transaction"
-import type { WalletUser } from "@/domain/wallet/wallet"
-import { TopUpFlow } from "@/features/money-movement/components/top-up-flow"
-import { TransferFlow } from "@/features/money-movement/components/transfer-flow"
+import { createMoney, createMoneyFromMinor } from "@/domain/money"
+import type { TopUpReceipt, TransferReceipt } from "@/domain/money-movement"
+import type { MoneyMovementRepository } from "@/data/money-movement-repository"
+import type { WalletData, WalletUser } from "@/domain/wallet"
+import { TopUpFlow } from "@/features/top-up/top-up-flow"
+import { TransferFlow } from "@/features/transfer/transfer-flow"
 import i18n from "@/i18n/config"
-import { MockMoneyMovementRepository } from "@/infrastructure/wallet/mock-money-movement-repository"
-import { walletQueryKeys } from "@/infrastructure/wallet/wallet-queries"
-import { MoneyMovementError } from "@/shared/errors/money-movement-error"
+import { MockMoneyMovementRepository } from "@/data/money-movement-repository"
+import { walletQueryKey } from "@/data/wallet-queries"
+import { MoneyMovementError } from "@/shared/errors/errors"
 
 interface CapturedToastOptions {
   readonly title?: string
@@ -40,7 +36,7 @@ interface CapturedPromiseOptions<T> {
   readonly loading: CapturedToastOptions
   readonly success: CapturedToastOptions | ((data: T) => CapturedToastOptions)
   readonly error:
-    CapturedToastOptions | ((error: unknown) => CapturedToastOptions)
+  CapturedToastOptions | ((error: unknown) => CapturedToastOptions)
 }
 
 const sileoMocks = vi.hoisted(() => ({
@@ -65,11 +61,10 @@ function renderFlow(element: ReactElement): QueryClient {
   const queryClient = new QueryClient({
     defaultOptions: { mutations: { retry: false }, queries: { retry: false } },
   })
-  queryClient.setQueryData(walletQueryKeys.wallet, wallet)
-  queryClient.setQueryData<readonly Transaction[]>(
-    walletQueryKeys.transactions,
-    []
-  )
+  queryClient.setQueryData<WalletData>(walletQueryKey, {
+    wallet,
+    transactions: [],
+  })
 
   render(
     <QueryClientProvider client={queryClient}>
@@ -78,6 +73,10 @@ function renderFlow(element: ReactElement): QueryClient {
   )
 
   return queryClient
+}
+
+function getWalletData(queryClient: QueryClient): WalletData | undefined {
+  return queryClient.getQueryData<WalletData>(walletQueryKey)
 }
 
 function createDeferred<T>() {
@@ -233,15 +232,11 @@ describe("transfer flow", () => {
     })
     expect(successToast.title).toBe("Transfer complete")
     expect(successToast.button?.title).toBe("View receipt")
-    expect(
-      queryClient.getQueryData<WalletUser>(walletQueryKeys.wallet)?.balance
-        .amountMinor
-    ).toBe(403_550)
-    expect(
-      queryClient.getQueryData<readonly Transaction[]>(
-        walletQueryKeys.transactions
-      )?.[0]
-    ).toMatchObject({ id: "txn_flow_transfer", type: "debit" })
+    expect(getWalletData(queryClient)?.wallet.balance.amountMinor).toBe(403_550)
+    expect(getWalletData(queryClient)?.transactions[0]).toMatchObject({
+      id: "txn_flow_transfer",
+      type: "debit",
+    })
   })
 
   it("keeps the cache unchanged while pending and blocks duplicate confirmation", async () => {
@@ -280,15 +275,8 @@ describe("transfer flow", () => {
     expect(confirmButton).toHaveAttribute("aria-disabled", "true")
     expect(transfer).toHaveBeenCalledOnce()
     expect(sileoMocks.promise).toHaveBeenCalledOnce()
-    expect(
-      queryClient.getQueryData<WalletUser>(walletQueryKeys.wallet)?.balance
-        .amountMinor
-    ).toBe(428_550)
-    expect(
-      queryClient.getQueryData<readonly Transaction[]>(
-        walletQueryKeys.transactions
-      )
-    ).toEqual([])
+    expect(getWalletData(queryClient)?.wallet.balance.amountMinor).toBe(428_550)
+    expect(getWalletData(queryClient)?.transactions).toEqual([])
 
     await act(async () => {
       deferred.resolve(receipt)
@@ -298,15 +286,8 @@ describe("transfer flow", () => {
     expect(
       await screen.findByRole("heading", { name: "Transfer complete" })
     ).toBeVisible()
-    expect(
-      queryClient.getQueryData<WalletUser>(walletQueryKeys.wallet)?.balance
-        .amountMinor
-    ).toBe(403_550)
-    expect(
-      queryClient.getQueryData<readonly Transaction[]>(
-        walletQueryKeys.transactions
-      )
-    ).toHaveLength(1)
+    expect(getWalletData(queryClient)?.wallet.balance.amountMinor).toBe(403_550)
+    expect(getWalletData(queryClient)?.transactions).toHaveLength(1)
 
     const successToast = getSuccessOptions(
       getPromiseOptions<TransferReceipt>(),
@@ -353,15 +334,8 @@ describe("transfer flow", () => {
       screen.getByRole("button", { name: "Confirm transfer" })
     ).toBeEnabled()
     expect(screen.getByText("Ahmed Al-Harbi")).toBeVisible()
-    expect(
-      queryClient.getQueryData<WalletUser>(walletQueryKeys.wallet)?.balance
-        .amountMinor
-    ).toBe(428_550)
-    expect(
-      queryClient.getQueryData<readonly Transaction[]>(
-        walletQueryKeys.transactions
-      )
-    ).toEqual([])
+    expect(getWalletData(queryClient)?.wallet.balance.amountMinor).toBe(428_550)
+    expect(getWalletData(queryClient)?.transactions).toEqual([])
 
     const errorToast = getErrorOptions(
       getPromiseOptions<TransferReceipt>(),
@@ -433,16 +407,11 @@ describe("top-up flow", () => {
     expect(successToast.title).toBe("Top up complete")
     expect(successToast.button?.title).toBe("View receipt")
     await waitFor(() =>
-      expect(
-        queryClient.getQueryData<WalletUser>(walletQueryKeys.wallet)?.balance
-          .amountMinor
-      ).toBe(438_550)
+      expect(getWalletData(queryClient)?.wallet.balance.amountMinor).toBe(
+        438_550
+      )
     )
-    expect(
-      queryClient.getQueryData<readonly Transaction[]>(
-        walletQueryKeys.transactions
-      )?.[0]
-    ).toMatchObject({
+    expect(getWalletData(queryClient)?.transactions[0]).toMatchObject({
       id: "txn_flow_top_up",
       type: "credit",
       category: "top_up",
@@ -483,15 +452,8 @@ describe("top-up flow", () => {
     expect(confirmButton).toHaveAttribute("aria-disabled", "true")
     expect(topUp).toHaveBeenCalledOnce()
     expect(sileoMocks.promise).toHaveBeenCalledOnce()
-    expect(
-      queryClient.getQueryData<WalletUser>(walletQueryKeys.wallet)?.balance
-        .amountMinor
-    ).toBe(428_550)
-    expect(
-      queryClient.getQueryData<readonly Transaction[]>(
-        walletQueryKeys.transactions
-      )
-    ).toEqual([])
+    expect(getWalletData(queryClient)?.wallet.balance.amountMinor).toBe(428_550)
+    expect(getWalletData(queryClient)?.transactions).toEqual([])
 
     await act(async () => {
       deferred.resolve(receipt)
@@ -501,15 +463,8 @@ describe("top-up flow", () => {
     expect(
       await screen.findByRole("heading", { name: "Top up complete" })
     ).toBeVisible()
-    expect(
-      queryClient.getQueryData<WalletUser>(walletQueryKeys.wallet)?.balance
-        .amountMinor
-    ).toBe(438_550)
-    expect(
-      queryClient.getQueryData<readonly Transaction[]>(
-        walletQueryKeys.transactions
-      )
-    ).toHaveLength(1)
+    expect(getWalletData(queryClient)?.wallet.balance.amountMinor).toBe(438_550)
+    expect(getWalletData(queryClient)?.transactions).toHaveLength(1)
 
     const successToast = getSuccessOptions(
       getPromiseOptions<TopUpReceipt>(),

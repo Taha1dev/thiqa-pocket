@@ -16,11 +16,11 @@ import { Skeleton } from "@/components/ui/skeleton"
 import {
   SAUDI_IBAN_PATTERN,
   normalizeSaudiIban,
-} from "@/domain/money-movement/money-movement"
+} from "@/domain/money-movement"
 import type {
   Transaction,
   TransactionStatus,
-} from "@/domain/transaction/transaction"
+} from "@/domain/transaction"
 import { cn } from "@/lib/utils"
 import { copyToClipboard } from "@/shared/browser/copy-to-clipboard"
 import { formatDate } from "@/shared/formatting/format-date"

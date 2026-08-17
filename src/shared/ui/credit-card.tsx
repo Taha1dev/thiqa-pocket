@@ -2,7 +2,7 @@ import { SimCard } from "@phosphor-icons/react"
 import { useId, type PointerEvent } from "react"
 import { useTranslation } from "react-i18next"
 
-import type { Money } from "@/domain/money/money"
+import type { Money } from "@/domain/money"
 import { cn } from "@/lib/utils"
 import { formatMoney } from "@/shared/formatting/format-money"
 

@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-import { createMoneyFromMinor } from "@/domain/money/money"
-import type { Transaction } from "@/domain/transaction/transaction"
+import { createMoneyFromMinor } from "@/domain/money"
+import type { Transaction } from "@/domain/transaction"
 import { TransactionDetailContent } from "@/features/transactions/transaction-detail-content"
 import i18n from "@/i18n/config"
 

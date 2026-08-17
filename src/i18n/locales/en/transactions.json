@@ -17,9 +17,6 @@
     "copyAccount": "Copy IBAN or account",
     "copyTransactionId": "Copy transaction ID",
     "backToActivity": "Back to activity",
-    "drawerTitle": "Transaction details",
-    "drawerDescription": "Review this wallet transaction.",
-    "close": "Close transaction details",
     "errorTitle": "Transaction unavailable",
     "notFoundTitle": "Transaction not found",
     "notFoundDescription": "This transaction does not exist or is no longer available."

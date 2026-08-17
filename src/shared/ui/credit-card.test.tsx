@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { beforeEach, describe, expect, it } from "vitest"
 
-import { createMoneyFromMinor } from "@/domain/money/money"
+import { createMoneyFromMinor } from "@/domain/money"
 import i18n from "@/i18n/config"
 import { CreditCard } from "@/shared/ui/credit-card"
 

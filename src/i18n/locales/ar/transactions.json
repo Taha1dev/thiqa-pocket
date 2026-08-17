@@ -17,9 +17,6 @@
     "copyAccount": "نسخ الآيبان أو الحساب",
     "copyTransactionId": "نسخ معرّف المعاملة",
     "backToActivity": "العودة إلى النشاط",
-    "drawerTitle": "تفاصيل المعاملة",
-    "drawerDescription": "راجع حركة المحفظة هذه.",
-    "close": "إغلاق تفاصيل المعاملة",
     "errorTitle": "المعاملة غير متاحة",
     "notFoundTitle": "المعاملة غير موجودة",
     "notFoundDescription": "هذه المعاملة غير موجودة أو لم تعد متاحة."

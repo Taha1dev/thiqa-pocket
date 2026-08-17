@@ -2,9 +2,9 @@ import { render, screen, within } from "@testing-library/react"
 import { MemoryRouter } from "react-router"
 import { beforeEach, describe, expect, it } from "vitest"
 
-import { createMoney } from "@/domain/money/money"
-import type { Transaction } from "@/domain/transaction/transaction"
-import type { WalletUser } from "@/domain/wallet/wallet"
+import { createMoney } from "@/domain/money"
+import type { Transaction } from "@/domain/transaction"
+import type { WalletUser } from "@/domain/wallet"
 import { DashboardContent } from "@/features/dashboard/dashboard-content"
 import i18n from "@/i18n/config"
 

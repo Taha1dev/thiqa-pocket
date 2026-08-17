@@ -4,9 +4,9 @@ import {
   TOP_UP_LIMITS,
   TRANSFER_LIMITS,
   normalizeSaudiIban,
-} from "@/domain/money-movement/money-movement"
-import { createTopUpSchema } from "@/features/money-movement/top-up-schema"
-import { createTransferSchema } from "@/features/money-movement/transfer-schema"
+} from "@/domain/money-movement"
+import { createTopUpSchema } from "@/features/top-up/schema"
+import { createTransferSchema } from "@/features/transfer/schema"
 
 const transferMessages = {
   recipientRequired: "recipient-required",

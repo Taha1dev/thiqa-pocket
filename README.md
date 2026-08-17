@@ -1,15 +1,22 @@
 # Thiqa Pocket
 
-Thiqa Pocket is a bilingual React and Vite fintech SPA foundation. It uses a typed feature-oriented architecture, semantic shadcn/Tailwind tokens, React Router, TanStack Query, Zustand for mock authentication only, and i18next for English and Arabic.
+Thiqa Pocket is a bilingual fintech assessment SPA with a mock wallet, transaction details, simulated transfers and top-ups, and a read-only Gemini spending assistant. It preserves accessible English/LTR and Arabic/RTL experiences, responsive layouts, and light/dark themes.
 
-## Development
+## Setup
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Quality checks:
+Demo credentials:
+
+```text
+Email: sara@thiqa.sa
+Password: Thiqa123!
+```
+
+Run the quality suite with:
 
 ```bash
 npm run typecheck
@@ -20,48 +27,64 @@ npm run build
 
 GitHub Actions runs typecheck → lint → tests → build for pull requests and pushes to `main`.
 
-## Architecture
+## Technical decisions
 
-- `src/app` owns provider composition, layouts, and the centralized route tree.
-- `src/domain` owns money, wallet, and transaction contracts without UI dependencies.
-- `src/infrastructure` validates and maps `/mock_data.json`, implements repository contracts, and owns the mock auth adapter.
-- `src/features` owns route-level product composition.
-- `src/i18n` owns locale resources and the single `thiqa.locale` persistence adapter.
-- `src/shared` contains reusable formatting, errors, and application UI.
+React and Vite fit this client-side SPA: SSR is explicitly out of scope, React supports the required component and state model, and Vite keeps the development and production build setup small and fast.
 
-The checked-in JSON is treated as an untrusted HTTP response: Zod validates it before decimal currency values are converted to integer minor units. The mock token is only a demonstration state and provides no real authentication or authorization.
+State ownership is deliberately narrow:
 
-## Interface and demo access
+- TanStack Query owns wallet and transaction data plus their loading, error, caching, and mutation lifecycles.
+- Zustand owns only the persisted mock authentication session and its hydration state.
+- React Hook Form and Zod own form state and validation.
+- Focused hooks and local React state own temporary review, receipt, and chat state.
+- i18next owns the active locale; the existing theme provider owns theme state.
 
-The authenticated shell uses a horizontal desktop header and switches to a compact top bar plus safe-area-aware bottom navigation below the `lg` breakpoint. Wallet and activity views stay on the existing TanStack Query repository boundary; the shell reads the same cached wallet query for account presentation rather than copying user data into global state. Theme controls continue to use the existing provider, `theme` storage key, system preference behavior, and `d` keyboard shortcut.
+This avoids copying wallet data into global client state or creating synchronization paths. Money is represented as integer minor units in the domain layer. The replaceable `WalletRepository` fetches `/mock_data.json`, validates the untrusted response with Zod, maps it into domain models, and supports cancellation without exposing the JSON source to the UI.
 
-The mock sign-in accepts `sara@thiqa.sa` with password `Thiqa123!`. These values are intentionally browser-visible demo configuration and are not credentials for a real security boundary. Successful login, failed login, and logout feedback use one root-level Sileo toaster; field validation and server-style credential errors remain inline and accessible even when toast notifications are unavailable.
+The relevant source boundaries are:
 
-## Simulated money movement
+- `src/app`: providers, authenticated layout, navigation, and explicit React Router configuration.
+- `src/features`: route pages and feature-specific UI/flow logic.
+- `src/domain`: framework-independent money, wallet, transaction, and money-movement rules.
+- `src/data`: repository contracts and implementations, schemas, queries, and cache updates.
+- `src/components/ui`: generated/customized UI primitives.
+- `src/shared`: reusable app UI, formatting, browser helpers, and typed errors.
+- `src/i18n`: English and Arabic resources plus root `lang`/`dir` synchronization.
 
-Transfer and Top Up are client-side simulations; no bank, payment provider, or real money movement is involved. Successful confirmations return typed mock receipts and update the existing TanStack Query wallet, transaction-list, and transaction-detail caches for the current browser session. `public/mock_data.json` remains immutable, so refreshing the application resets these simulated financial mutations to the checked-in dataset.
+## Authentication and security
 
-Mock request timing is centralized and injectable: wallet reads use 600 ms, authentication uses 800 ms, and financial mutations use 1,200 ms. Tests replace or disable this delay rather than sleeping. Transfer and Top Up use pessimistic commits—the wallet and transaction caches change only after the repository promise resolves—and pass that same TanStack mutation promise to `sileo.promise`. The single root toaster morphs from a compact pending state to a localized financial summary with a View receipt action; the review screen, pending control, inline error, and full receipt remain the accessible source of truth when toast feedback is unavailable.
+Zustand persist stores the assessment's fake token in `localStorage` under `thiqa.auth`. JavaScript can read `localStorage`, so an XSS vulnerability could expose this value. That tradeoff is acceptable only for a browser-visible fake token: it provides no real authentication or authorization.
 
-The demo transfer range is SAR 10.00–10,000.00 and cannot exceed the available wallet balance. The demo top-up range is SAR 50.00–20,000.00, with SAR 100, 250, 500, and 1,000 presets. These limits are centralized in the money-movement domain module and shared by validation, infrastructure rules, helper text, and tests.
+A production financial application should use a server-managed session or an `HttpOnly`, `Secure`, `SameSite` cookie with appropriate CSRF protection. Real authorization must always be enforced by the server.
 
-Production hosts must rewrite unknown browser-history paths to `index.html` so direct links such as `/transactions/txn_1001` resolve to the SPA.
+## Deep links and deployment
 
-## Ask AI
+Transaction identity is represented by `/transactions/:transactionId`; transaction details always render as a standalone page. Protected routing preserves an unauthenticated user's intended URL and restores it after successful login.
 
-Ask AI is a read-only, session-only demo for questions about the supplied wallet activity. The React feature loads wallet and transaction context through the existing TanStack Query repository, then calls an `AssistantProvider`; its HTTP implementation minimizes that context to the balance and analysis-relevant transaction fields before posting to `/api/assistant`. Phone numbers, account/IBAN values, notes, and full wallet records are not sent.
+Browser-history routes require hosting support as well as React Router. The root [`vercel.json`](./vercel.json) rewrites non-file requests to `/index.html`, so direct visits and refreshes such as `/transactions/txn_1001` load the SPA. Vercel resolves existing files and functions first, so static assets remain available and `/api/assistant` (plus future `/api/*` functions) continues to route to serverless functions.
 
-Gemini runs only inside the Vercel serverless function and is constrained to answer from the supplied wallet data. `GEMINI_API_KEY` is read server-side and never enters the Vite client bundle. Chat messages stay in component memory and are discarded on refresh. This bonus feature is a product demonstration, not financial advice, and it cannot execute transfers or top-ups.
+## Simulated financial flows
 
-For local end-to-end development, configure `GEMINI_API_KEY` for the linked Vercel project's Development environment, then pull that environment and start the local function runtime:
+Transfer and Top Up are client-only simulations; no bank or payment provider is involved. Successful requests return typed receipts and update the shared TanStack Query wallet snapshot for the current session. `public/mock_data.json` remains immutable, so refreshing resets simulated mutations.
+
+Transfer limits are SAR 10.00–10,000.00 and cannot exceed the available balance. Top-up limits are SAR 50.00–20,000.00 with SAR 100, 250, 500, and 1,000 presets. The domain constants are reused by validation, repository rules, helper text, and tests.
+
+## Gemini assistant
+
+The assistant sends only the wallet balance and analysis-relevant transaction fields to `/api/assistant`. The Vercel function reads `GEMINI_API_KEY` from `process.env`; it is never exposed through a `VITE_*` value or required by automated tests. Chat messages are session-only, the feature cannot perform financial actions, and its output is not financial advice.
+
+For local end-to-end assistant development, configure `GEMINI_API_KEY` in the linked Vercel project's Development environment, then run:
 
 ```bash
 npx vercel pull
 npx vercel dev
 ```
 
-## Transaction presentation and wallet card
+## What I would improve with more time
 
-Transaction identity always remains in `/transactions/:transactionId`. A normal Dashboard click records an in-memory presentation origin, updates the URL, and presents the shared transaction detail content in the generated shadcn Base UI Drawer. The Drawer is bottom-oriented on mobile and direction-aware on desktop. Closing or using browser Back returns to the Dashboard; because the presentation origin is intentionally memory-only, a refresh, pasted URL, or other direct navigation renders the same content as a standalone page instead of placing a Drawer over an invented background.
-
-The reusable `CreditCard` is a Thiqa Pocket wallet visualization, not an issued payment card. It uses `/thiqa-white-icon.svg`, real wallet balance data on the Dashboard, and a typed static demo model on the public Login visual so unauthenticated rendering never fetches protected wallet data. It deliberately omits card-network branding, PAN, expiry, CVV, contactless claims, and card controls.
+- Replace mock authentication and mutations with a real backend and durable ledger.
+- Move to server-managed sessions and server-enforced authorization.
+- Add end-to-end tests for direct URLs, login restoration, and financial flows.
+- Add production observability, privacy-safe error reporting, and audit trails.
+- Add rate limiting and abuse protection to the assistant endpoint.
+- Define a stronger production data freshness and reconciliation strategy.

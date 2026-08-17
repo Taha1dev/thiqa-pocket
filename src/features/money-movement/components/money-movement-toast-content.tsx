@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next"
 import type {
   TopUpReceipt,
   TransferReceipt,
-} from "@/domain/money-movement/money-movement"
-import { normalizeSaudiIban } from "@/domain/money-movement/money-movement"
+} from "@/domain/money-movement"
+import { normalizeSaudiIban } from "@/domain/money-movement"
 import { formatMoney } from "@/shared/formatting/format-money"
 
 type MoneyMovementToastContentProps =
