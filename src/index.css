@@ -77,74 +77,193 @@
   --font-family-arabic:
     "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
   --font-family-sans: var(--font-family-latin);
-  --background: oklch(0.965 0.009 84);
-  --foreground: oklch(0.285 0.012 225);
-  --card: oklch(0.99 0.005 84);
-  --card-foreground: oklch(0.285 0.012 225);
-  --popover: oklch(0.99 0.005 84);
-  --popover-foreground: oklch(0.285 0.012 225);
-  --primary: oklch(0.515 0.088 181);
-  --primary-foreground: oklch(0.985 0.005 84);
-  --secondary: oklch(0.925 0.014 82);
-  --secondary-foreground: oklch(0.31 0.04 198);
-  --muted: oklch(0.945 0.009 84);
-  --muted-foreground: oklch(0.565 0.012 225);
-  --accent: oklch(0.92 0.035 174);
-  --accent-foreground: oklch(0.31 0.04 198);
-  --destructive: oklch(0.56 0.2 27);
-  --border: oklch(0.89 0.014 83);
-  --input: oklch(0.86 0.015 83);
-  --field: oklch(0.985 0.006 84);
-  --ring: oklch(0.515 0.088 181);
-  --chart-1: oklch(0.515 0.088 181);
-  --chart-2: oklch(0.31 0.04 198);
-  --chart-3: oklch(0.74 0.085 82);
-  --chart-4: oklch(0.73 0.064 174);
-  --chart-5: oklch(0.59 0.15 29);
+
+  --background: #f5f8fa;
+  --foreground: #102438;
+
+  --card: #ffffff;
+  --card-foreground: #102438;
+
+  --popover: #ffffff;
+  --popover-foreground: #102438;
+
+  --primary: #087f83;
+  --primary-foreground: #ffffff;
+
+  --secondary: #eaf0f4;
+  --secondary-foreground: #17374b;
+
+  --muted: #eef3f6;
+  --muted-foreground: #687c89;
+
+  --accent: #dff3f2;
+  --accent-foreground: #08666a;
+
+  --destructive: #cc4d4d;
+
+  --border: #d8e2e8;
+  --input: #c8d5dd;
+  --field: #f9fbfc;
+
+  --ring: #087f83;
+
+  --chart-1: #087f83;
+  --chart-2: #165775;
+  --chart-3: #c6a260;
+  --chart-4: #4ca8b3;
+  --chart-5: #d36358;
+
   --radius: 0.75rem;
-  --sidebar: oklch(0.22 0.023 232);
-  --sidebar-foreground: oklch(0.97 0.008 84);
-  --sidebar-primary: oklch(0.73 0.064 174);
-  --sidebar-primary-foreground: oklch(0.19 0.025 228);
-  --sidebar-accent: oklch(0.29 0.036 198);
-  --sidebar-accent-foreground: oklch(0.97 0.008 84);
-  --sidebar-border: oklch(0.35 0.03 205);
-  --sidebar-ring: oklch(0.73 0.064 174);
-  --brand-ink: oklch(0.22 0.023 232);
-  --brand-ink-foreground: oklch(0.97 0.008 84);
-  --brand-petrol: oklch(0.31 0.04 198);
-  --brand-petrol-foreground: oklch(0.97 0.008 84);
-  --brand-teal: oklch(0.515 0.088 181);
-  --brand-teal-foreground: oklch(0.985 0.005 84);
-  --brand-jade: oklch(0.73 0.064 174);
-  --brand-jade-foreground: oklch(0.25 0.038 190);
-  --brand-gold: oklch(0.74 0.085 82);
-  --brand-gold-foreground: oklch(0.29 0.045 75);
-  --wallet-surface: oklch(0.23 0.052 187);
-  --wallet-surface-deep: oklch(0.145 0.033 201);
-  --wallet-surface-highlight: oklch(0.43 0.088 178 / 58%);
-  --wallet-foreground: oklch(0.985 0.005 84);
-  --wallet-muted: oklch(0.78 0.026 165);
-  --wallet-gold: oklch(0.74 0.085 82);
-  --wallet-gold-glow: oklch(0.8 0.11 82 / 42%);
-  --status-completed: oklch(0.92 0.048 164);
-  --status-completed-foreground: oklch(0.35 0.085 164);
-  --status-pending: oklch(0.93 0.058 88);
-  --status-pending-foreground: oklch(0.41 0.08 75);
-  --status-failed: oklch(0.93 0.045 25);
-  --status-failed-foreground: oklch(0.45 0.16 27);
-  --chrome: oklch(0.99 0.005 84 / 78%);
-  --chrome-border: oklch(0.83 0.014 83 / 64%);
-  --surface-shadow: oklch(0.22 0.023 232 / 8%);
-  --toast-surface: oklch(0.18 0.02 225);
-  --toast-foreground: oklch(0.96 0.007 84);
-  --toast-muted: oklch(0.75 0.014 205);
-  --toast-border: oklch(0.38 0.02 211 / 76%);
-  --toast-success: oklch(0.76 0.09 169);
-  --toast-loading: oklch(0.73 0.02 205);
-  --toast-error: oklch(0.78 0.13 25);
+
+  --sidebar: #0b2942;
+  --sidebar-foreground: #f3f7fa;
+  --sidebar-primary: #43bdc0;
+  --sidebar-primary-foreground: #092c34;
+  --sidebar-accent: #13384f;
+  --sidebar-accent-foreground: #f3f7fa;
+  --sidebar-border: #29475c;
+  --sidebar-ring: #43bdc0;
+
+  --brand-ink: #0b2942;
+  --brand-ink-foreground: #f3f7fa;
+
+  --brand-petrol: #124b5a;
+  --brand-petrol-foreground: #f3f7fa;
+
+  --brand-teal: #087f83;
+  --brand-teal-foreground: #ffffff;
+
+  --brand-jade: #56b9af;
+  --brand-jade-foreground: #0d3c40;
+
+  --brand-gold: #c6a260;
+  --brand-gold-foreground: #47371d;
+
+  --wallet-surface: #0e334a;
+  --wallet-surface-deep: #071724;
+  --wallet-surface-highlight: rgb(24 136 150 / 46%);
+
+  --wallet-foreground: #f5fafc;
+  --wallet-muted: #a6c3cd;
+
+  --wallet-gold: #c6a260;
+  --wallet-gold-glow: rgb(198 162 96 / 38%);
+
+  --status-completed: #ddf3ec;
+  --status-completed-foreground: #24725e;
+
+  --status-pending: #f7eed7;
+  --status-pending-foreground: #84651e;
+
+  --status-failed: #f8e4e3;
+  --status-failed-foreground: #a44343;
+
+  --chrome: rgb(255 255 255 / 84%);
+  --chrome-border: rgb(195 210 219 / 72%);
+
+  --surface-shadow: rgb(11 41 66 / 8%);
+
+  --toast-surface: #0b2942;
+  --toast-foreground: #f4f8fa;
+  --toast-muted: #9eb1bd;
+  --toast-border: rgb(72 104 126 / 78%);
+  --toast-success: #53c4b2;
+  --toast-loading: #91a7b3;
+  --toast-error: #e27870;
 }
 
+.dark {
+  --background: #06121f;
+  --foreground: #f2f7fa;
+
+  --card: #0b1d2d;
+  --card-foreground: #f2f7fa;
+
+  --popover: #102536;
+  --popover-foreground: #f2f7fa;
+
+  --primary: #43bdc0;
+  --primary-foreground: #062a30;
+
+  --secondary: #132a3b;
+  --secondary-foreground: #ebf3f6;
+
+  --muted: #102536;
+  --muted-foreground: #8fa5b0;
+
+  --accent: #123a43;
+  --accent-foreground: #7fd9d7;
+
+  --destructive: #e16c65;
+
+  --border: #263f51;
+  --input: #354f61;
+  --field: #102536;
+
+  --ring: #43bdc0;
+
+  --chart-1: #43bdc0;
+  --chart-2: #5aa9ca;
+  --chart-3: #dbbc78;
+  --chart-4: #6fcbd0;
+  --chart-5: #e67b71;
+
+  --sidebar: #050f1a;
+  --sidebar-foreground: #f2f7fa;
+  --sidebar-primary: #43bdc0;
+  --sidebar-primary-foreground: #06292f;
+  --sidebar-accent: #123047;
+  --sidebar-accent-foreground: #f2f7fa;
+  --sidebar-border: #29455a;
+  --sidebar-ring: #43bdc0;
+
+  --brand-ink: #0b2942;
+  --brand-ink-foreground: #f2f7fa;
+
+  --brand-petrol: #155565;
+  --brand-petrol-foreground: #f2f7fa;
+
+  --brand-teal: #43bdc0;
+  --brand-teal-foreground: #062a30;
+
+  --brand-jade: #62c8bc;
+  --brand-jade-foreground: #082e31;
+
+  --brand-gold: #dbbc78;
+  --brand-gold-foreground: #342719;
+
+  --wallet-surface: #0b3049;
+  --wallet-surface-deep: #051824;
+  --wallet-surface-highlight: rgb(27 146 160 / 50%);
+
+  --wallet-foreground: #f6fbfd;
+  --wallet-muted: #a7c7d0;
+
+  --wallet-gold: #dbbc78;
+  --wallet-gold-glow: rgb(219 188 120 / 44%);
+
+  --status-completed: #153c35;
+  --status-completed-foreground: #7ed5b8;
+
+  --status-pending: #40351e;
+  --status-pending-foreground: #e5c776;
+
+  --status-failed: #432629;
+  --status-failed-foreground: #ef9992;
+
+  --chrome: rgb(7 22 35 / 92%);
+  --chrome-border: rgb(49 76 96 / 72%);
+
+  --surface-shadow: rgb(0 0 0 / 50%);
+
+  --toast-surface: #f3f7f9;
+  --toast-foreground: #13283a;
+  --toast-muted: #647a88;
+  --toast-border: rgb(193 207 214 / 82%);
+  --toast-success: #328c82;
+  --toast-loading: #687f8c;
+  --toast-error: #c85751;
+}
 html[lang="ar"] {
   --font-family-sans: var(--font-family-arabic);
 }
@@ -159,73 +278,7 @@ html[dir="rtl"] .localized-placeholder-direction:placeholder-shown {
   text-align: start;
 }
 
-.dark {
-  --background: oklch(0.125 0.018 229);
-  --foreground: oklch(0.955 0.008 84);
-  --card: oklch(0.205 0.022 221);
-  --card-foreground: oklch(0.955 0.008 84);
-  --popover: oklch(0.235 0.025 216);
-  --popover-foreground: oklch(0.96 0.007 84);
-  --primary: oklch(0.71 0.073 175);
-  --primary-foreground: oklch(0.16 0.022 224);
-  --secondary: oklch(0.255 0.027 207);
-  --secondary-foreground: oklch(0.94 0.009 84);
-  --muted: oklch(0.225 0.021 218);
-  --muted-foreground: oklch(0.735 0.016 205);
-  --accent: oklch(0.3 0.05 181);
-  --accent-foreground: oklch(0.89 0.055 174);
-  --destructive: oklch(0.7 0.18 24);
-  --border: oklch(0.36 0.025 211);
-  --input: oklch(0.41 0.025 211);
-  --field: oklch(0.175 0.021 223);
-  --ring: oklch(0.71 0.073 175);
-  --chart-1: oklch(0.71 0.073 175);
-  --chart-2: oklch(0.66 0.055 203);
-  --chart-3: oklch(0.78 0.085 83);
-  --chart-4: oklch(0.75 0.065 174);
-  --chart-5: oklch(0.72 0.14 28);
-  --sidebar: oklch(0.115 0.018 229);
-  --sidebar-foreground: oklch(0.955 0.008 84);
-  --sidebar-primary: oklch(0.71 0.073 175);
-  --sidebar-primary-foreground: oklch(0.17 0.022 224);
-  --sidebar-accent: oklch(0.27 0.035 195);
-  --sidebar-accent-foreground: oklch(0.955 0.008 84);
-  --sidebar-border: oklch(0.34 0.025 212);
-  --sidebar-ring: oklch(0.71 0.073 175);
-  --brand-ink: oklch(0.18 0.022 228);
-  --brand-ink-foreground: oklch(0.95 0.008 84);
-  --brand-petrol: oklch(0.27 0.038 198);
-  --brand-petrol-foreground: oklch(0.95 0.008 84);
-  --brand-teal: oklch(0.68 0.076 179);
-  --brand-teal-foreground: oklch(0.17 0.022 224);
-  --brand-jade: oklch(0.75 0.065 174);
-  --brand-jade-foreground: oklch(0.18 0.025 206);
-  --brand-gold: oklch(0.78 0.085 83);
-  --brand-gold-foreground: oklch(0.21 0.035 75);
-  --wallet-surface: oklch(0.195 0.05 187);
-  --wallet-surface-deep: oklch(0.115 0.03 202);
-  --wallet-surface-highlight: oklch(0.39 0.082 178 / 54%);
-  --wallet-foreground: oklch(0.975 0.006 84);
-  --wallet-muted: oklch(0.8 0.03 165);
-  --wallet-gold: oklch(0.78 0.085 83);
-  --wallet-gold-glow: oklch(0.82 0.11 83 / 46%);
-  --status-completed: oklch(0.29 0.06 164);
-  --status-completed-foreground: oklch(0.84 0.11 164);
-  --status-pending: oklch(0.31 0.065 82);
-  --status-pending-foreground: oklch(0.87 0.12 88);
-  --status-failed: oklch(0.3 0.075 25);
-  --status-failed-foreground: oklch(0.82 0.12 25);
-  --chrome: oklch(0.155 0.022 225 / 92%);
-  --chrome-border: oklch(0.39 0.026 210 / 68%);
-  --surface-shadow: oklch(0.02 0.01 225 / 52%);
-  --toast-surface: oklch(0.965 0.008 84);
-  --toast-foreground: oklch(0.22 0.018 225);
-  --toast-muted: oklch(0.5 0.018 215);
-  --toast-border: oklch(0.78 0.015 84 / 78%);
-  --toast-success: oklch(0.48 0.095 174);
-  --toast-loading: oklch(0.5 0.018 215);
-  --toast-error: oklch(0.57 0.18 27);
-}
+
 
 @layer base {
   * {
