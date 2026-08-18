@@ -48,11 +48,15 @@ describe("protected routes", () => {
 
     renderRouter(router)
 
-    await user.type(
-      await screen.findByLabelText("Email address"),
-      demoCredentials.email
-    )
-    await user.type(screen.getByLabelText("Password"), demoCredentials.password)
+    const email = await screen.findByLabelText("Email address")
+    const password = screen.getByLabelText("Password")
+
+    expect(router.state.location.state).toEqual({ from: "/assistant" })
+
+    await user.clear(email)
+    await user.type(email, demoCredentials.email)
+    await user.clear(password)
+    await user.type(password, demoCredentials.password)
     await user.click(screen.getByRole("button", { name: "Sign in securely" }))
 
     await waitFor(() =>
