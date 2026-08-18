@@ -44,7 +44,7 @@ export function LoginForm({
     formState: { errors, isSubmitting },
     handleSubmit, register, resetField, setError, setFocus,
   } = useForm<LoginFormValues>({
-    defaultValues: { email: "sara@thiqa.sa", password: "Thiqa123!" },
+    defaultValues: { email: "", password: "" },
     resolver: zodResolver(schema),
     shouldFocusError: true,
   })
